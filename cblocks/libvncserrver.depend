@@ -1,0 +1,363 @@
+# depslib dependency file v1.0
+1572510363 source:x:\arm\libvncserver\libvncserver\auth.c
+	<rfb/rfb.h>
+
+1572510390 x:\arm\libvncserver\rfb\rfb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<rfb/rfbproto.h>
+	<arpa/inet.h>
+	<sys/select.h>
+	<sys/types.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+
+1572421402 x:\arm\libvncserver\rfb\rfbproto.h
+	<stdint.h>
+	<sys/timeb.h>
+	<winsock2.h>
+	<rfb/rfbconfig.h>
+	<zlib.h>
+	<endian.h>
+	<sys/time.h>
+	<netinet/in.h>
+
+1572425899 x:\arm\libvncserver\rfb\rfbconfig.h
+	<stdint.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\cargs.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\corre.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\cursor.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+
+1572421402 x:\arm\libvncserver\rfb\rfbregion.h
+
+1572421402 x:\arm\libvncserver\libvncserver\private.h
+
+1572421402 source:x:\arm\libvncserver\libvncserver\cutpaste.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\draw.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\font.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\hextile.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\httpd.c
+	<rfb/rfb.h>
+	<ctype.h>
+	<unistd.h>
+	<sys/types.h>
+	<fcntl.h>
+	<errno.h>
+	<io.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<BaseTsd.h>
+	<sys/time.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<pwd.h>
+	<tcpd.h>
+
+1572445126 source:x:\arm\libvncserver\libvncserver\main.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<stdarg.h>
+	<errno.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<unistd.h>
+	<fcntl.h>
+	<signal.h>
+	<time.h>
+	<fcntl.h>
+	<conio.h>
+	<sys/timeb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\rfbregion.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\rfbssl_none.c
+	"rfbssl.h"
+
+1572421402 x:\arm\libvncserver\libvncserver\rfbssl.h
+	"rfb/rfb.h"
+	"rfb/rfbconfig.h"
+
+1572421402 source:x:\arm\libvncserver\libvncserver\rre.c
+	<rfb/rfb.h>
+
+1572510363 source:x:\arm\libvncserver\libvncserver\scale.c
+	<string.h>
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<fcntl.h>
+	<unistd.h>
+	<pwd.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<arpa/inet.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\selbox.c
+	<ctype.h>
+	<rfb/rfb.h>
+	<rfb/keysym.h>
+
+1572421402 x:\arm\libvncserver\rfb\keysym.h
+
+1572421402 source:x:\arm\libvncserver\libvncserver\sockets.c
+	<rfb/rfb.h>
+	<sys/types.h>
+	<sys/time.h>
+	<sys/socket.h>
+	<sys/resource.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<unistd.h>
+	"rfbssl.h"
+	<systemd/sd-daemon.h>
+	<fcntl.h>
+	<errno.h>
+	<syslog.h>
+	<tcpd.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\stats.c
+	<rfb/rfb.h>
+
+1572421401 source:x:\arm\libvncserver\common\d3des.c
+	"d3des.h"
+
+1572421401 x:\arm\libvncserver\common\d3des.h
+
+1572421401 source:x:\arm\libvncserver\common\md5.c
+	<sys/types.h>
+	<stdlib.h>
+	<string.h>
+	"md5.h"
+	"rfb/rfbconfig.h"
+
+1572421401 x:\arm\libvncserver\common\md5.h
+	<stdio.h>
+	<limits.h>
+	<stdint.h>
+
+1572421401 source:x:\arm\libvncserver\common\minilzo.c
+	<config.h>
+	<limits.h>
+	<stddef.h>
+	"minilzo.h"
+	"lzo/lzoconf.h"
+	<string.h>
+	<string.h>
+	<assert.h>
+	<unchecked.h>
+	<intrin.h>
+	"lzo/lzo1x.h"
+
+1572421401 x:\arm\libvncserver\common\minilzo.h
+	"lzoconf.h"
+
+1572421401 x:\arm\libvncserver\common\lzoconf.h
+	<config.h>
+	<limits.h>
+	<stddef.h>
+	"lzodefs.h"
+
+1572421401 x:\arm\libvncserver\common\lzodefs.h
+
+1572421401 source:x:\arm\libvncserver\common\sha1.c
+	"sha.h"
+	"sha-private.h"
+
+1572421401 x:\arm\libvncserver\common\sha.h
+	<stdint.h>
+
+1572421401 x:\arm\libvncserver\common\sha-private.h
+
+1572421401 source:x:\arm\libvncserver\common\turbojpeg.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<jpeglib.h>
+	<jerror.h>
+	<setjmp.h>
+	"./turbojpeg.h"
+
+1572421401 x:\arm\libvncserver\common\turbojpeg.h
+
+1572421401 source:x:\arm\libvncserver\common\vncauth.c
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<rfb/rfbproto.h>
+	"d3des.h"
+	<string.h>
+	<math.h>
+	<sys/stat.h>
+	<time.h>
+	<sys/time.h>
+
+1572424645 source:x:\arm\libvncserver\common\zywrletemplate.c
+
+1572510363 source:x:\arm\libvncserver\libvncserver\translate.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinit24.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+
+1572421402 x:\arm\libvncserver\libvncserver\tableinitcmtemplate.c
+
+1572421402 x:\arm\libvncserver\libvncserver\tableinittctemplate.c
+
+1572421402 x:\arm\libvncserver\libvncserver\tabletranstemplate.c
+
+1572423737 x:\arm\libvncserver\libvncserver\tableinit24.c
+	<stdint.h>
+
+1572421402 x:\arm\libvncserver\libvncserver\tabletrans24template.c
+
+1572421402 source:x:\arm\libvncserver\libvncserver\ultra.c
+	<rfb/rfb.h>
+	<lzo/lzo1x.h>
+	"minilzo.h"
+
+1572421402 source:x:\arm\libvncserver\libvncserver\zlib.c
+	<rfb/rfb.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\zrle.c
+	"rfb/rfb.h"
+	"private.h"
+	"zrleoutstream.h"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+
+1572421402 x:\arm\libvncserver\libvncserver\zrleoutstream.h
+	<zlib.h>
+	"zrletypes.h"
+	"rfb/rfb.h"
+
+1572421402 x:\arm\libvncserver\libvncserver\zrletypes.h
+
+1572424875 x:\arm\libvncserver\libvncserver\zrleencodetemplate.c
+	"zrleoutstream.h"
+	"zrlepalettehelper.h"
+	<assert.h>
+	"zywrletemplate.c"
+
+1572421402 x:\arm\libvncserver\libvncserver\zrlepalettehelper.h
+	"zrletypes.h"
+
+1572424645 x:\arm\libvncserver\common\zywrletemplate.c
+
+1572424875 source:x:\arm\libvncserver\libvncserver\zrleencodetemplate.c
+	"zrleoutstream.h"
+	"zrlepalettehelper.h"
+	<assert.h>
+	"zywrletemplate.c"
+
+1572421402 source:x:\arm\libvncserver\libvncserver\zrleoutstream.c
+	"zrleoutstream.h"
+	<stdlib.h>
+
+1572421402 source:x:\arm\libvncserver\libvncserver\zrlepalettehelper.c
+	"zrlepalettehelper.h"
+	<assert.h>
+	<string.h>
+
+1572426171 source:x:\arm\libvncserver\cblocks\main.c
+	<stdio.h>
+	<stdlib.h>
+	"rfb/rfb.h"
+
+1572510363 source:x:\arm\libvncserver\libvncserver\rfbserver.c
+	<stdio.h>
+	<string.h>
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	"rfb/rfbconfig.h"
+	<fcntl.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<io.h>
+	<unistd.h>
+	<pwd.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<stdarg.h>
+	"scale.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<dirent.h>
+	<errno.h>
+	<time.h>
+	<limits.h>
+	"rfbssl.h"
+	<direct.h>
+
+1572421402 x:\arm\libvncserver\libvncserver\scale.h
+
+1572444692 source:x:\arm\libvncserver\examples\example.c
+	<unistd.h>
+	<netdb.h>
+	<rfb/rfb.h>
+	<rfb/keysym.h>
+	"radon.h"
+
+1572421401 x:\arm\libvncserver\examples\radon.h
+
