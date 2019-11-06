@@ -14,8 +14,6 @@
 
 #include <rfb/rfb.h>
 
-extern int rfbStringToAddr(char *str, in_addr_t *iface);
-
 void
 rfbUsage(void)
 {
@@ -93,15 +91,7 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
 		rfbUsage();
 		return FALSE;
 	    }
-	    rfbScreen->port = atoi(argv[++i]);
-#ifdef LIBVNCSERVER_IPv6
-	} else if (strcmp(argv[i], "-rfbportv6") == 0) { /* -rfbportv6 port */
-            if (i + 1 >= *argc) {
-		rfbUsage();
-		return FALSE;
-	    }
-	    rfbScreen->ipv6port = atoi(argv[++i]);
-#endif
+/* JACS	    rfbScreen->port =*/ atoi(argv[++i]);
         } else if (strcmp(argv[i], "-rfbwait") == 0) {  /* -rfbwait ms */
             if (i + 1 >= *argc) {
 		rfbUsage();
@@ -162,21 +152,21 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
 		rfbUsage();
 		return FALSE;
 	    }
-            rfbScreen->httpDir = argv[++i];
+    //        rfbScreen->httpDir = argv[++i];
         } else if (strcmp(argv[i], "-httpport") == 0) {  /* -httpport portnum */
             if (i + 1 >= *argc) {
 		rfbUsage();
 		return FALSE;
 	    }
-            rfbScreen->httpPort = atoi(argv[++i]);
-#ifdef LIBVNCSERVER_IPv6
-	} else if (strcmp(argv[i], "-httpportv6") == 0) {  /* -httpportv6 portnum */
-            if (i + 1 >= *argc) {
-		rfbUsage();
-		return FALSE;
-	    }
-            rfbScreen->http6Port = atoi(argv[++i]);
-#endif
+          //  rfbScreen->httpPort = atoi(argv[++i]);
+//#ifdef LIBVNCSERVER_IPv6
+//	} else if (strcmp(argv[i], "-httpportv6") == 0) {  /* -httpportv6 portnum */
+//            if (i + 1 >= *argc) {
+//		rfbUsage();
+//		return FALSE;
+//	    }
+//           rfbScreen->http6Port = atoi(argv[++i]);
+//#endif
         } else if (strcmp(argv[i], "-enablehttpproxy") == 0) {
             rfbScreen->httpEnableProxyConnect = TRUE;
         } else if (strcmp(argv[i], "-progressive") == 0) {  /* -httpport portnum */
@@ -190,17 +180,14 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
 		rfbUsage();
 		return FALSE;
 	    }
-            if (! rfbStringToAddr(argv[++i], &(rfbScreen->listenInterface))) {
-                return FALSE;
-            }
-#ifdef LIBVNCSERVER_IPv6
-	} else if (strcmp(argv[i], "-listenv6") == 0) {  /* -listenv6 ipv6addr */
-            if (i + 1 >= *argc) {
-		rfbUsage();
-		return FALSE;
-	    }
-	    rfbScreen->listen6Interface = argv[++i];
-#endif
+//#ifdef LIBVNCSERVER_IPv6
+//	} else if (strcmp(argv[i], "-listenv6") == 0) {  /* -listenv6 ipv6addr */
+//            if (i + 1 >= *argc) {
+//		rfbUsage();
+//		return FALSE;
+//	    }
+//	    rfbScreen->listen6Interface = argv[++i];
+//#endif
 #ifdef LIBVNCSERVER_WITH_WEBSOCKETS
         } else if (strcmp(argv[i], "-sslkeyfile") == 0) {  /* -sslkeyfile sslkeyfile */
             if (i + 1 >= *argc) {

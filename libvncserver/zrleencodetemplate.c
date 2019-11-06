@@ -70,7 +70,7 @@
 #define ZRLE_ENCODE_TILE __RFB_CONCAT3E(zrleEncodeTile,BPP,END_FIX)
 #define BPPOUT 16
 #else
-#define PIXEL_T __RFB_CONCAT2E(zrle_U,BPP)
+#define PIXEL_T __RFB_CONCAT2E(zrle_U,BPP)      
 #define zrleOutStreamWRITE_PIXEL __RFB_CONCAT2E(zrleOutStreamWriteOpaque,BPP)
 #define ZRLE_ENCODE __RFB_CONCAT3E(zrleEncode,BPP,END_FIX)
 #define ZRLE_ENCODE_TILE __RFB_CONCAT3E(zrleEncodeTile,BPP,END_FIX)
@@ -94,9 +94,9 @@ void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os,
 #include "zywrletemplate.c"
 #endif
 
-static void ZRLE_ENCODE (int x, int y, int w, int h,
-		  zrleOutStream* os, void* buf
-                  EXTRA_ARGS
+static void ZRLE_ENCODE( int x, int y, int w, int h
+                       , zrleOutStream* os, void* buf
+                         EXTRA_ARGS
                   )
 {
   int ty;

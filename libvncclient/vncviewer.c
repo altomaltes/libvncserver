@@ -21,10 +21,8 @@
  * vncviewer.c - the Xt-based VNC viewer.
  */
 
-#ifdef WIN32
-#undef SOCKET
-#include <winsock2.h>
-#endif
+void * rfbErr;
+
 
 #ifdef _MSC_VER
 #define strdup _strdup /* Prevent POSIX deprecation warnings */
@@ -53,7 +51,6 @@ static void DummyRect(rfbClient* client, int x, int y, int w, int h) {
 static char* NoPassword(rfbClient* client) {
   return strdup("");
 }
-#define close closesocket
 #else
 #include <stdio.h>
 #include <termios.h>
@@ -429,10 +426,10 @@ rfbBool rfbInitClient(rfbClient* client,int* argc,char** argv) {
     for (i = 1; i < *argc; i++) {
       j = i;
       if (strcmp(argv[i], "-listen") == 0) {
-	listenForIncomingConnections(client);
+//	listenForIncomingConnections(client);
 	break;
       } else if (strcmp(argv[i], "-listennofork") == 0) {
-	listenForIncomingConnectionsNoFork(client, -1);
+	//listenForIncomingConnectionsNoFork(client, -1);
 	break;
       } else if (strcmp(argv[i], "-play") == 0) {
 	client->serverPort = -1;
@@ -551,3 +548,6 @@ void rfbClientCleanup(rfbClient* client) {
 
   free(client);
 }
+
+int ReadFromRFBServer( void *a, int b , int c ) {}
+

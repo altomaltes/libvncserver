@@ -113,7 +113,7 @@ rfbVncAuthSendChallenge(rfbClientPtr cl)
     /* 4 byte header is alreay sent. Which is rfbSecTypeVncAuth 
        (same as rfbVncAuth). Just send the challenge. */
     rfbRandomBytes(cl->authChallenge);
-    if (rfbWriteExact(cl, (char *)cl->authChallenge, CHALLENGESIZE) < 0) {
+    if (rfbPushClientStream( cl, (char *)cl->authChallenge, CHALLENGESIZE) < 0) {
         rfbLogPerror("rfbAuthNewClient: write");
         rfbCloseClient(cl);
         return;
@@ -160,7 +160,7 @@ rfbVncAuthNone(rfbClientPtr cl)
     if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion > 7 && cl->protocolMinorVersion != 889) {
         rfbLog("rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8\n");
         authResult = Swap32IfLE(rfbVncAuthOK);
-        if (rfbWriteExact(cl, (char *)&authResult, 4) < 0) {
+        if (rfbPushClientStream( cl,  (char *)&authResult, 4) < 0) {
             rfbLogPerror("rfbAuthProcessClientMessage: write");
             rfbCloseClient(cl);
             return;
@@ -227,7 +227,7 @@ rfbSendSecurityTypeList(rfbClientPtr cl, int primaryType)
     buffer[0] = (unsigned char)size-1;
 
     /* Send the list. */
-    if (rfbWriteExact(cl, (char *)buffer, size) < 0) {
+    if (rfbPushClientStream( cl,  (char *)buffer, size) < 0) {
 	rfbLogPerror("rfbSendSecurityTypeList: write");
 	rfbCloseClient(cl);
 	return;
@@ -262,7 +262,7 @@ rfbSendSecurityType(rfbClientPtr cl, int32_t securityType)
 
     /* Send the value. */
     value32 = Swap32IfLE(securityType);
-    if (rfbWriteExact(cl, (char *)&value32, 4) < 0) {
+    if (rfbPushClientStream( cl,  (char *)&value32, 4) < 0) {
 	rfbLogPerror("rfbSendSecurityType: write");
 	rfbCloseClient(cl);
 	return;
@@ -328,32 +328,20 @@ rfbAuthNewClient(rfbClientPtr cl)
 
 void
 rfbProcessClientSecurityType(rfbClientPtr cl)
-{
-    int n;
-    uint8_t chosenType;
-    rfbSecurityHandler* handler;
-    
-    /* Read the security type. */
-    n = rfbReadExact(cl, (char *)&chosenType, 1);
-    if (n <= 0) {
-	if (n == 0)
-	    rfbLog("rfbProcessClientSecurityType: client gone\n");
-	else
-	    rfbLogPerror("rfbProcessClientSecurityType: read");
-	rfbCloseClient(cl);
-	return;
-    }
+{  rfbSecurityHandler* handler;
 
+    unsigned char * chosenType= getStreamBytes( cl, 1 );if ( !chosenType ) return;
+    
     /* Make sure it was present in the list sent by the server. */
     for (handler = securityHandlers; handler; handler = handler->next) {
-	if (chosenType == handler->type) {
-	      rfbLog("rfbProcessClientSecurityType: executing handler for type %d\n", chosenType);
+	if (*chosenType == handler->type) {
+	      rfbLog("rfbProcessClientSecurityType: executing handler for type %d\n", *chosenType);
 	      handler->handler(cl);
 	      return;
 	}
     }
 
-    rfbLog("rfbProcessClientSecurityType: wrong security type (%d) requested\n", chosenType);
+    rfbLog("rfbProcessClientSecurityType: wrong security type (%d) requested\n", *chosenType);
     rfbCloseClient(cl);
 }
 
@@ -368,23 +356,16 @@ void
 rfbAuthProcessClientMessage(rfbClientPtr cl)
 {
     int n;
-    uint8_t response[CHALLENGESIZE];
     uint32_t authResult;
-
-    if ((n = rfbReadExact(cl, (char *)response, CHALLENGESIZE)) <= 0) {
-        if (n != 0)
-            rfbLogPerror("rfbAuthProcessClientMessage: read");
-        rfbCloseClient(cl);
-        return;
-    }
+    uint8_t * response= (uint8_t *)getStreamBytes( cl, CHALLENGESIZE ); if ( !response ) return;
 
     if(!cl->screen->passwordCheck(cl,(const char*)response,CHALLENGESIZE)) {
         rfbErr("rfbAuthProcessClientMessage: password check failed\n");
         authResult = Swap32IfLE(rfbVncAuthFailed);
-        if (rfbWriteExact(cl, (char *)&authResult, 4) < 0) {
+        if (rfbPushClientStream( cl,  (char *)&authResult, 4) < 0) {
             rfbLogPerror("rfbAuthProcessClientMessage: write");
         }
-	/* support RFB 3.8 clients, they expect a reason *why* it was disconnected */
+	// support RFB 3.8 clients, they expect a reason *why* it was disconnected 
         if (cl->protocolMinorVersion > 7) {
             rfbClientSendString(cl, "password check failed!");
 	}
@@ -392,10 +373,10 @@ rfbAuthProcessClientMessage(rfbClientPtr cl)
             rfbCloseClient(cl);
         return;
     }
-
+        
     authResult = Swap32IfLE(rfbVncAuthOK);
 
-    if (rfbWriteExact(cl, (char *)&authResult, 4) < 0) {
+    if (rfbPushClientStream( cl,  &authResult, 4) < 0) {
         rfbLogPerror("rfbAuthProcessClientMessage: write");
         rfbCloseClient(cl);
         return;

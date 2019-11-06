@@ -148,7 +148,7 @@ typedef struct _rfbClientFileDownload {
 	int downloadInProgress;
 	unsigned long mTime;
 	int downloadFD;
-	pthread_t downloadThread;
+//	pthread_t downloadThread;
 } rfbClientFileDownload ;
 
 typedef struct _rfbClientFileUpload {

@@ -44,14 +44,6 @@
 #include <unistd.h>
 #endif
 #include <pwd.h>
-#ifdef LIBVNCSERVER_HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
-#ifdef LIBVNCSERVER_HAVE_NETINET_IN_H
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <arpa/inet.h>
-#endif
 #endif
 
 #ifdef DEBUGPROTO
@@ -334,10 +326,8 @@ rfbScreenInfoPtr rfbScaledScreenAllocate(rfbClientPtr cl, int width, int height)
             /* Reset to a known condition: scale the entire framebuffer */
             rfbScaledScreenUpdateRect(cl->screen, ptr, 0, 0, cl->screen->width, cl->screen->height);
             /* Now, insert into the chain */
-            LOCK(cl->updateMutex);
             ptr->scaledScreenNext = cl->screen->scaledScreenNext;
             cl->screen->scaledScreenNext = ptr;
-            UNLOCK(cl->updateMutex);
         }
         else
         {
@@ -386,12 +376,10 @@ void rfbScalingSetup(rfbClientPtr cl, int width, int height)
          *    ptr->width, ptr->height, ptr->scaledScreenRefCount);
          */
 
-        LOCK(cl->updateMutex);
         cl->scaledScreen->scaledScreenRefCount--;
         ptr->scaledScreenRefCount++;
         cl->scaledScreen=ptr;
         cl->newFBSizePending = TRUE;
-        UNLOCK(cl->updateMutex);
 
         rfbLog("Scaling to %dx%d (refcount=%d)\n",width,height,ptr->scaledScreenRefCount);
     }
@@ -405,9 +393,7 @@ int rfbSendNewScaleSize(rfbClientPtr cl)
     if (cl->useNewFBSize && cl->newFBSizePending)
 	return FALSE;
 
-    LOCK(cl->updateMutex);
     cl->newFBSizePending = FALSE;
-    UNLOCK(cl->updateMutex);
 
     if (cl->PalmVNC==TRUE)
     {
@@ -421,7 +407,7 @@ int rfbSendNewScaleSize(rfbClientPtr cl)
         pmsg.pad2 = 0;
 
         rfbLog("Sending a response to a PalmVNC style frameuffer resize event (%dx%d)\n", cl->scaledScreen->width, cl->scaledScreen->height);
-        if (rfbWriteExact(cl, (char *)&pmsg, sz_rfbPalmVNCReSizeFrameBufferMsg) < 0) {
+        if (rfbPushClientStream( cl,  (char *)&pmsg, sz_rfbPalmVNCReSizeFrameBufferMsg) < 0) {
             rfbLogPerror("rfbNewClient: write");
             rfbCloseClient(cl);
             return FALSE;
@@ -435,7 +421,7 @@ int rfbSendNewScaleSize(rfbClientPtr cl)
         rmsg.framebufferWidth  = Swap16IfLE(cl->scaledScreen->width);
         rmsg.framebufferHeigth = Swap16IfLE(cl->scaledScreen->height);
         rfbLog("Sending a response to a UltraVNC style frameuffer resize event (%dx%d)\n", cl->scaledScreen->width, cl->scaledScreen->height);
-        if (rfbWriteExact(cl, (char *)&rmsg, sz_rfbResizeFrameBufferMsg) < 0) {
+        if (rfbPushClientStream( cl,  (char *)&rmsg, sz_rfbResizeFrameBufferMsg) < 0) {
             rfbLogPerror("rfbNewClient: write");
             rfbCloseClient(cl);
             return FALSE;

@@ -95,10 +95,10 @@ static void doptr(int buttonMask,int x,int y,rfbClientPtr cl)
    }
    
 }
-
+                         
 static enum rfbNewClientAction newclient(rfbClientPtr cl)
 {
-   char buffer[1024];
+/*   char buffer[1024];
    struct sockaddr_in addr;
    socklen_t len=sizeof(addr);
    unsigned int ip;
@@ -109,6 +109,7 @@ static enum rfbNewClientAction newclient(rfbClientPtr cl)
 	   (ip>>24)&0xff,(ip>>16)&0xff,(ip>>8)&0xff,ip&0xff);
    output(cl->screen,buffer);
    return RFB_CLIENT_ACCEPT;
+*/
 }
 
 int main(int argc,char** argv)

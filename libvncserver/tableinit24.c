@@ -23,6 +23,8 @@
  *  USA.
  */
 
+#include <stdint.h>
+
 static void
 rfbInitOneRGBTable24 (uint8_t *table, int inMax, int outMax, int outShift,int swap);
 

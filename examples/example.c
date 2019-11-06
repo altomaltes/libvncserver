@@ -34,6 +34,7 @@
 #include <rfb/rfb.h>
 #include <rfb/keysym.h>
 
+
 static const int bpp=4;
 static int maxx=800, maxy=600;
 /* TODO: odd maxx doesn't work (vncviewer bug) */
@@ -166,6 +167,35 @@ static void doptr(int buttonMask,int x,int y,rfbClientPtr cl)
 
 /* Here the key events are handled */
 
+
+//extern void rfbDisconnectUDPSock(rfbScreenInfoPtr rfbScreen) {}
+//extern int rfbConnect(rfbScreenInfoPtr rfbScreen, char* host, int port) {}
+
+
+
+
+/* currently private, called by rfbProcessArguments() */
+
+/*int
+rfbStringToAddr(char *str, in_addr_t *addr)  {
+    if (str == NULL || *str == '\0' || strcmp(str, "any") == 0) {
+        *addr = htonl(INADDR_ANY);
+    } else if (strcmp(str, "localhost") == 0) {
+        *addr = htonl(INADDR_LOOPBACK);
+    } else {
+        struct hostent *hp;
+        if ((*addr = inet_addr(str)) == htonl(INADDR_NONE)) {
+            if (!(hp = gethostbyname(str))) {
+                return 0;
+            }
+            *addr = *(unsigned long *)hp->h_addr;
+        }
+    }
+    return 1;
+}
+  */
+
+
 static void dokey(rfbBool down,rfbKeySym key,rfbClientPtr cl)
 {
   if(down) {
@@ -289,7 +319,7 @@ int main(int argc,char** argv)
   rfbScreen->ptrAddEvent = doptr;
   rfbScreen->kbdAddEvent = dokey;
   rfbScreen->newClientHook = newclient;
-  rfbScreen->httpDir = "../webclients";
+//  rfbScreen->httpDir = "../webclients";
   rfbScreen->httpEnableProxyConnect = TRUE;
 
   initBuffer((unsigned char*)rfbScreen->frameBuffer);

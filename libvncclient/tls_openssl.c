@@ -31,28 +31,6 @@
 #include <openssl/rand.h>
 #include <openssl/x509.h>
 
-#ifdef _MSC_VER
-typedef CRITICAL_SECTION MUTEX_TYPE;
-#define MUTEX_INIT(mutex) InitializeCriticalSection(&mutex)
-#define MUTEX_FREE(mutex) DeleteCriticalSection(&mutex)
-#define MUTEX_LOCK(mutex) EnterCriticalSection(&mutex)
-#define MUTEX_UNLOCK(mutex) LeaveCriticalSection(&mutex)
-#define CURRENT_THREAD_ID GetCurrentThreadId()
-#else
-#include <pthread.h>
-typedef pthread_mutex_t MUTEX_TYPE;
-#define MUTEX_INIT(mutex) {\
-	pthread_mutexattr_t mutexAttr;\
-	pthread_mutexattr_init(&mutexAttr);\
-	pthread_mutexattr_settype(&mutexAttr, PTHREAD_MUTEX_RECURSIVE);\
-	pthread_mutex_init(&mutex, &mutexAttr);\
-}
-#define MUTEX_FREE(mutex) pthread_mutex_destroy(&mutex)
-#define MUTEX_LOCK(mutex) pthread_mutex_lock(&mutex)
-#define MUTEX_UNLOCK(mutex) pthread_mutex_unlock(&mutex)
-#define CURRENT_THREAD_ID pthread_self()
-#endif
-
 #include "tls.h"
 
 #ifdef _MSC_VER
@@ -62,19 +40,8 @@ typedef SSIZE_T ssize_t;
 #endif
 
 static rfbBool rfbTLSInitialized = FALSE;
-static MUTEX_TYPE *mutex_buf = NULL;
 
-struct CRYPTO_dynlock_value {
-	MUTEX_TYPE mutex;
-};
 
-static void locking_function(int mode, int n, const char *file, int line)
-{
-	if (mode & CRYPTO_LOCK)
-		MUTEX_LOCK(mutex_buf[n]);
-	else
-		MUTEX_UNLOCK(mutex_buf[n]);
-}
 
 static unsigned long id_function(void)
 {
@@ -89,7 +56,6 @@ static struct CRYPTO_dynlock_value *dyn_create_function(const char *file, int li
 		malloc(sizeof(struct CRYPTO_dynlock_value));
 	if (!value)
 		goto err;
-	MUTEX_INIT(value->mutex);
 
 	return value;
 
@@ -99,18 +65,12 @@ err:
 
 static void dyn_lock_function (int mode, struct CRYPTO_dynlock_value *l, const char *file, int line)
 {
-	if (mode & CRYPTO_LOCK)
-		MUTEX_LOCK(l->mutex);
-	else
-		MUTEX_UNLOCK(l->mutex);
 }
 
 
 static void
 dyn_destroy_function(struct CRYPTO_dynlock_value *l, const char *file, int line)
 {
-	MUTEX_FREE(l->mutex);
-	free(l);
 }
 
 
@@ -154,12 +114,11 @@ InitializeTLS(void)
   }
 
   for (i = 0; i < CRYPTO_num_locks(); i++)
-    MUTEX_INIT(mutex_buf[i]);
 
-  CRYPTO_set_locking_callback(locking_function);
+//  CRYPTO_set_locking_callback(locking_function);
   CRYPTO_set_id_callback(id_function);
   CRYPTO_set_dynlock_create_callback(dyn_create_function);
-  CRYPTO_set_dynlock_lock_callback(dyn_lock_function);
+//  CRYPTO_set_dynlock_lock_callback(dyn_lock_function);
   CRYPTO_set_dynlock_destroy_callback(dyn_destroy_function);
   SSL_load_error_strings();
   SSLeay_add_ssl_algorithms();

@@ -27,10 +27,10 @@
 # include <string.h>
 
 #include "md5.h"
-#include "rfb/rfbconfig.h"
+//#include "rfb/rfbconfig.h"
 
 #ifdef LIBVNCSERVER_WORDS_BIGENDIAN
-#  define WORDS_BIGENDIAN 1
+// #  define WORDS_BIGENDIAN 1
 #endif
 /* We need to keep the namespace clean so define the MD5 function
    protected using leading __ .  */

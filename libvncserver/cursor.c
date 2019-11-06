@@ -22,8 +22,8 @@
  *  USA.
  */
 
-#include <rfb/rfb.h>
-#include <rfb/rfbregion.h>
+#include "rfb/rfb.h"
+#include "rfb/rfbregion.h"
 #include "private.h"
 
 void rfbScaledScreenUpdate(rfbScreenInfoPtr screen, int x1, int y1, int x2, int y2);
@@ -475,9 +475,7 @@ void rfbHideCursor(rfbClientPtr cl)
    rfbCursorPtr c=s->cursor;
    int j,x1,x2,y1,y2,bpp=s->serverFormat.bitsPerPixel/8,
      rowstride=s->paddedWidthInBytes;
-   LOCK(s->cursorMutex);
    if(!c) {
-     UNLOCK(s->cursorMutex);
      return;
    }
    
@@ -487,7 +485,6 @@ void rfbHideCursor(rfbClientPtr cl)
    if(x1<0) x1=0;
    if(x2>=s->width) x2=s->width-1;
    x2-=x1; if(x2<=0) {
-     UNLOCK(s->cursorMutex);
      return;
    }
    y1=cl->cursorY-c->yhot;
@@ -495,7 +492,6 @@ void rfbHideCursor(rfbClientPtr cl)
    if(y1<0) y1=0;
    if(y2>=s->height) y2=s->height-1;
    y2-=y1; if(y2<=0) {
-     UNLOCK(s->cursorMutex);
      return;
    }
 
@@ -508,7 +504,6 @@ void rfbHideCursor(rfbClientPtr cl)
    /* Copy to all scaled versions */
    rfbScaledScreenUpdate(s, x1, y1, x1+x2, y1+y2);
    
-   UNLOCK(s->cursorMutex);
 }
 
 void rfbShowCursor(rfbClientPtr cl)
@@ -521,7 +516,6 @@ void rfbShowCursor(rfbClientPtr cl)
    rfbBool wasChanged=FALSE;
 
    if(!c) return;
-   LOCK(s->cursorMutex);
 
    bufSize=c->width*c->height*bpp;
    w=(c->width+7)/8;
@@ -539,7 +533,6 @@ void rfbShowCursor(rfbClientPtr cl)
    if(x1<0) { i1=-x1; x1=0; }
    if(x2>=s->width) x2=s->width-1;
    x2-=x1; if(x2<=0) {
-     UNLOCK(s->cursorMutex);
      return; /* nothing to do */
    }
 
@@ -548,7 +541,6 @@ void rfbShowCursor(rfbClientPtr cl)
    if(y1<0) { j1=-y1; y1=0; }
    if(y2>=s->height) y2=s->height-1;
    y2-=y1; if(y2<=0) {
-     UNLOCK(s->cursorMutex);
      return; /* nothing to do */
    }
 
@@ -668,7 +660,6 @@ void rfbShowCursor(rfbClientPtr cl)
    /* Copy to all scaled versions */
    rfbScaledScreenUpdate(s, x1, y1, x1+x2, y1+y2);
 
-   UNLOCK(s->cursorMutex);
 }
 
 /* 
@@ -696,9 +687,7 @@ void rfbRedrawAfterHideCursor(rfbClientPtr cl,sraRegionPtr updateRegion)
 	    if(updateRegion) {
 	    	sraRgnOr(updateRegion,rect);
 	    } else {
-		    LOCK(cl->updateMutex);
 		    sraRgnOr(cl->modifiedRegion,rect);
-		    UNLOCK(cl->updateMutex);
 	    }
 	    sraRgnDestroy(rect);
 	}
@@ -728,8 +717,6 @@ void rfbSetCursor(rfbScreenInfoPtr rfbScreen,rfbCursorPtr c)
   rfbClientIteratorPtr iterator;
   rfbClientPtr cl;
 
-  LOCK(rfbScreen->cursorMutex);
-
   if(rfbScreen->cursor) {
     iterator=rfbGetClientIterator(rfbScreen);
     while((cl=rfbClientIteratorNext(iterator)))
@@ -751,6 +738,5 @@ void rfbSetCursor(rfbScreenInfoPtr rfbScreen,rfbCursorPtr c)
   }
   rfbReleaseClientIterator(iterator);
 
-  UNLOCK(rfbScreen->cursorMutex);
 }
 

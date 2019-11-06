@@ -17,7 +17,7 @@ int main(int argc,char** argv)
 	CHECK(width,1024);
 	CHECK(height,768);
 	CHECK(alwaysShared,TRUE);
-	CHECK(httpPort,3002);
+//	CHECK(httpPort,3002);
 	CHECK(dontDisconnect,TRUE);
 	if(fake_argc!=2) {
 		fprintf(stderr,"fake_argc is %d (should be 2)\n",fake_argc);

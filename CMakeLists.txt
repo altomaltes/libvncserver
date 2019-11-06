@@ -15,7 +15,7 @@ enable_testing()
 set(PACKAGE_NAME           "LibVNCServer")
 set(FULL_PACKAGE_NAME      "LibVNCServer")
 set(VERSION_SO             "1")
-set(PROJECT_BUGREPORT_PATH "https://github.com/LibVNC/libvncserver/issues")
+set(PROJECT_BUGREPORT_PATH "https://github.com/LibVNC/libvncasync/issues")
 set(LIBVNCSERVER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libvncserver)
 set(COMMON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common)
 set(LIBVNCCLIENT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libvncclient)
@@ -320,30 +320,29 @@ set(LIBVNCSERVER_SOURCES
     ${LIBVNCSERVER_DIR}/rfbserver.c
     ${LIBVNCSERVER_DIR}/rfbregion.c
     ${LIBVNCSERVER_DIR}/auth.c
-    ${LIBVNCSERVER_DIR}/sockets.c
     ${LIBVNCSERVER_DIR}/stats.c
     ${LIBVNCSERVER_DIR}/corre.c
     ${LIBVNCSERVER_DIR}/hextile.c
     ${LIBVNCSERVER_DIR}/rre.c
     ${LIBVNCSERVER_DIR}/translate.c
     ${LIBVNCSERVER_DIR}/cutpaste.c
-    ${LIBVNCSERVER_DIR}/httpd.c
+#    ${LIBVNCSERVER_DIR}/httpd.c
     ${LIBVNCSERVER_DIR}/cursor.c
     ${LIBVNCSERVER_DIR}/font.c
     ${LIBVNCSERVER_DIR}/draw.c
     ${LIBVNCSERVER_DIR}/selbox.c
     ${COMMON_DIR}/d3des.c
     ${COMMON_DIR}/vncauth.c
+    ${COMMON_DIR}/comms.c
     ${LIBVNCSERVER_DIR}/cargs.c
     ${LIBVNCSERVER_DIR}/ultra.c
     ${LIBVNCSERVER_DIR}/scale.c
 )
 
 set(LIBVNCCLIENT_SOURCES
+    ${COMMON_DIR}/comms.c
     ${LIBVNCCLIENT_DIR}/cursor.c
-    ${LIBVNCCLIENT_DIR}/listen.c
     ${LIBVNCCLIENT_DIR}/rfbproto.c
-    ${LIBVNCCLIENT_DIR}/sockets.c
     ${LIBVNCCLIENT_DIR}/vncviewer.c
 )
 
@@ -448,20 +447,19 @@ if(LIBVNCSERVER_WITH_WEBSOCKETS)
   add_definitions(-DLIBVNCSERVER_WITH_WEBSOCKETS)
   set(LIBVNCSERVER_SOURCES
     ${LIBVNCSERVER_SOURCES}
-    ${LIBVNCSERVER_DIR}/websockets.c
     ${LIBVNCSERVER_DIR}/ws_decode.c
     ${COMMON_DIR}/base64.c
     ${CRYPTO_SOURCES}
   )
 endif(LIBVNCSERVER_WITH_WEBSOCKETS)
 
-add_library(vncclient ${LIBVNCCLIENT_SOURCES})
-add_library(vncserver ${LIBVNCSERVER_SOURCES})
+add_library(vnccliasy ${LIBVNCCLIENT_SOURCES})
+add_library(vncasync ${LIBVNCSERVER_SOURCES})
 if(WIN32)
   set(ADDITIONAL_LIBS ${ADDITIONAL_LIBS} ws2_32)
 endif(WIN32)
 
-target_link_libraries(vncclient
+target_link_libraries(vnccliasy
                       ${ADDITIONAL_LIBS}
                       ${ZLIB_LIBRARIES}
                       ${LZO_LIBRARIES}
@@ -469,7 +467,7 @@ target_link_libraries(vncclient
                       ${GNUTLS_LIBRARIES}
                       ${OPENSSL_LIBRARIES}
 )
-target_link_libraries(vncserver
+target_link_libraries(vncasync
                       ${ADDITIONAL_LIBS}
                       ${ZLIB_LIBRARIES}
                       ${LZO_LIBRARIES}
@@ -480,7 +478,7 @@ target_link_libraries(vncserver
                       ${OPENSSL_LIBRARIES}
 )
 
-SET_TARGET_PROPERTIES(vncclient vncserver
+SET_TARGET_PROPERTIES(vnccliasy vncasync
 		PROPERTIES SOVERSION "${VERSION_SO}" VERSION "${LibVNCServer_VERSION}" C_STANDARD 90
 )
 
@@ -526,12 +524,11 @@ endif(MACOS)
 if(ANDROID)
   set(LIBVNCSERVER_EXAMPLES
     ${LIBVNCSERVER_EXAMPLES}
-    androidvncserver
+    androidvncasync
   )
 endif(ANDROID)
 
 set(LIBVNCCLIENT_EXAMPLES
-    backchannel
     ppmtest
 )
 
@@ -555,14 +552,14 @@ foreach(e ${LIBVNCSERVER_EXAMPLES})
   add_executable(examples_${e} ${LIBVNCSRVEXAMPLE_DIR}/${e}.c)
   set_target_properties(examples_${e} PROPERTIES OUTPUT_NAME ${e})
   set_target_properties(examples_${e} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/examples)
-  target_link_libraries(examples_${e} vncserver ${CMAKE_THREAD_LIBS_INIT})
+  target_link_libraries(examples_${e} vncasync ${CMAKE_THREAD_LIBS_INIT})
 endforeach(e ${LIBVNCSERVER_EXAMPLES})
 
 foreach(e ${LIBVNCCLIENT_EXAMPLES})
   add_executable(client_examples_${e} ${LIBVNCCLIEXAMPLE_DIR}/${e}.c ${LIBVNCCLIEXAMPLE_DIR}/${${e}_EXTRA_SOURCES} )
   set_target_properties(client_examples_${e} PROPERTIES OUTPUT_NAME ${e})
   set_target_properties(client_examples_${e} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/client_examples)
-  target_link_libraries(client_examples_${e} vncclient ${CMAKE_THREAD_LIBS_INIT} ${SDL2_LIBRARY} ${FFMPEG_LIBRARIES})
+  target_link_libraries(client_examples_${e} vnccliasy ${CMAKE_THREAD_LIBS_INIT} ${SDL2_LIBRARY} ${FFMPEG_LIBRARIES})
 endforeach(e ${LIBVNCCLIENT_EXAMPLES})
 
 
@@ -590,7 +587,7 @@ foreach(t ${SIMPLETESTS})
   add_executable(test_${t} ${TESTS_DIR}/${t}.c)
   set_target_properties(test_${t} PROPERTIES OUTPUT_NAME ${t})
   set_target_properties(test_${t} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/test)
-  target_link_libraries(test_${t} vncserver vncclient ${ADDITIONAL_TEST_LIBS})
+  target_link_libraries(test_${t} vncasync vnccliasy ${ADDITIONAL_TEST_LIBS})
 endforeach(t ${SIMPLETESTS})
 
 if(WITH_JPEG AND FOUND_LIBJPEG_TURBO)
@@ -603,7 +600,7 @@ if(WITH_JPEG AND FOUND_LIBJPEG_TURBO)
                 )
   set_target_properties(test_tjunittest PROPERTIES OUTPUT_NAME tjunittest)
   set_target_properties(test_tjunittest PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/test)
-  target_link_libraries(test_tjunittest vncserver vncclient ${ADDITIONAL_TEST_LIBS})
+  target_link_libraries(test_tjunittest vncasync vnccliasy ${ADDITIONAL_TEST_LIBS})
 
   add_executable(test_tjbench
                  ${TESTS_DIR}/tjbench.c
@@ -616,7 +613,7 @@ if(WITH_JPEG AND FOUND_LIBJPEG_TURBO)
                 )
   set_target_properties(test_tjbench PROPERTIES OUTPUT_NAME tjbench)
   set_target_properties(test_tjbench PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/test)
-  target_link_libraries(test_tjbench vncserver vncclient ${ADDITIONAL_TEST_LIBS})
+  target_link_libraries(test_tjbench vncasync vnccliasy ${ADDITIONAL_TEST_LIBS})
 
 endif(WITH_JPEG AND FOUND_LIBJPEG_TURBO)
 
@@ -627,7 +624,7 @@ if(LIBVNCSERVER_WITH_WEBSOCKETS)
     )
   set_target_properties(test_wstest PROPERTIES OUTPUT_NAME wstest)
   set_target_properties(test_wstest PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/test)
-  target_link_libraries(test_wstest vncserver vncclient ${ADDITIONAL_TEST_LIBS})
+  target_link_libraries(test_wstest vncasync vnccliasy ${ADDITIONAL_TEST_LIBS})
 endif(LIBVNCSERVER_WITH_WEBSOCKETS)
 
 add_test(NAME cargs COMMAND test_cargstest)
@@ -661,14 +658,14 @@ function(get_link_libraries OUT TARGET)
     set(${OUT} ${RESULT} PARENT_SCOPE)
 endfunction()
 
-get_link_libraries(PRIVATE_LIBS vncserver)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libvncserver.pc.cmakein ${CMAKE_CURRENT_BINARY_DIR}/libvncserver.pc @ONLY)
-get_link_libraries(PRIVATE_LIBS vncclient)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libvncclient.pc.cmakein ${CMAKE_CURRENT_BINARY_DIR}/libvncclient.pc @ONLY)
+get_link_libraries(PRIVATE_LIBS vncasync)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libvncasync.pc.cmakein ${CMAKE_CURRENT_BINARY_DIR}/libvncasync.pc @ONLY)
+get_link_libraries(PRIVATE_LIBS vnccliasy)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libvncasync.pc.cmakein ${CMAKE_CURRENT_BINARY_DIR}/libvncasync.pc @ONLY)
 
 if(LIBVNCSERVER_INSTALL)
-  install(TARGETS vncserver DESTINATION ${CMAKE_INSTALL_LIBDIR})
-  install(TARGETS vncclient DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  install(TARGETS vncasync DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  install(TARGETS vnccliasy DESTINATION ${CMAKE_INSTALL_LIBDIR})
   install(FILES
     rfb/keysym.h
     rfb/rfb.h
@@ -680,8 +677,8 @@ if(LIBVNCSERVER_INSTALL)
     )
 
   install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/libvncserver.pc
-    ${CMAKE_CURRENT_BINARY_DIR}/libvncclient.pc
+    ${CMAKE_CURRENT_BINARY_DIR}/libvncasync.pc
+    ${CMAKE_CURRENT_BINARY_DIR}/libvncasync.pc
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
     )
 endif()

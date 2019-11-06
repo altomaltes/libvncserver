@@ -109,10 +109,12 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
   int i;
   char *zrleBeforeBuf;
 
-  if (cl->zrleBeforeBuf == NULL) {
-	cl->zrleBeforeBuf = (char *) malloc(rfbZRLETileWidth * rfbZRLETileHeight * 4 + 4);
+  if ( cl->zrleBeforeBuf == NULL ) 
+  { size_t szBuff= rfbZRLETileWidth * rfbZRLETileHeight * 4 + 4 ;
+
+    cl->zrleBeforeBuf = (char *) malloc( szBuff );
   }
-  zrleBeforeBuf = cl->zrleBeforeBuf;
+  zrleBeforeBuf= cl->zrleBeforeBuf;
 
   if (cl->preferredEncoding == rfbEncodingZYWRLE) {
 	  if (cl->tightQualityLevel < 0) {

@@ -2,7 +2,7 @@
 #define _VNCSSL_H 1
 
 #include "rfb/rfb.h"
-#include "rfb/rfbconfig.h"
+//#include "rfb/rfbconfig.h"
 
 int rfbssl_init(rfbClientPtr cl);
 int rfbssl_pending(rfbClientPtr cl);

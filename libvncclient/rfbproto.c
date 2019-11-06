@@ -36,10 +36,6 @@
 #endif
 #include <errno.h>
 #include <rfb/rfbclient.h>
-#ifdef WIN32
-#undef SOCKET
-#undef socklen_t
-#endif
 #ifdef LIBVNCSERVER_HAVE_LIBZ
 #include <zlib.h>
 #ifdef __CHECKER__
@@ -279,16 +275,6 @@ DefaultSupportedMessagesTightVNC(rfbClient* client)
     SetServer2Client(client, rfbTextChat);
 }
 
-#ifndef WIN32
-static rfbBool
-IsUnixSocket(const char *name)
-{
-  struct stat sb;
-  if(stat(name, &sb) == 0 && (sb.st_mode & S_IFMT) == S_IFSOCK)
-    return TRUE;
-  return FALSE;
-}
-#endif
 
 /*
  * ConnectToRFBServer.
@@ -305,7 +291,7 @@ ConnectToRFBServer(rfbClient* client,const char *hostname, int port)
     client->vncRec = rec;
 
     rec->file = fopen(client->serverHost,"rb");
-    rec->tv.tv_sec = 0;
+ //   rec->tv.tv_sec = 0;
     rec->readTimestamp = FALSE;
     rec->doNotSleep = FALSE;
     
@@ -320,43 +306,30 @@ ConnectToRFBServer(rfbClient* client,const char *hostname, int port)
       fclose(rec->file);
       return FALSE;
     }
-    client->sock = -1;
+  //  client->sock = -1;
     return TRUE;
   }
 
-#ifndef WIN32
-  if(IsUnixSocket(hostname))
-    /* serverHost is a UNIX socket. */
-    client->sock = ConnectClientToUnixSock(hostname);
-  else
-#endif
   {
-#ifdef LIBVNCSERVER_IPv6
-    client->sock = ConnectClientToTcpAddr6(hostname, port);
-    if (client->sock == -1)
-#endif
     {
       unsigned int host;
 
       /* serverHost is a hostname */
-      if (!StringToIPAddr(hostname, &host)) {
-        rfbClientLog("Couldn't convert '%s' to host address\n", hostname);
-        return FALSE;
+   //   if (!StringToIPAddr(hostname, &host)) {
+     //   rfbClientLog("Couldn't convert '%s' to host address\n", hostname);
+       // return FALSE;
       }
-      client->sock = ConnectClientToTcpAddr(host, port);
+   //   client->sock = ConnectClientToTcpAddr(host, port);
     }
   }
 
-  if (client->sock < 0) {
-    rfbClientLog("Unable to connect to VNC server\n");
-    return FALSE;
-  }
+//  if (client->sock < 0) {
+  ///  rfbClientLog("Unable to connect to VNC server\n");
+ //   return FALSE;
+ // }
 
-  if(client->QoS_DSCP && !SetDSCP(client->sock, client->QoS_DSCP))
-     return FALSE;
+//  return SetNonBlocking(client->sock);
 
-  return SetNonBlocking(client->sock);
-}
 
 /*
  * ConnectToRFBRepeater.
@@ -369,18 +342,18 @@ rfbBool ConnectToRFBRepeater(rfbClient* client,const char *repeaterHost, int rep
   char tmphost[250];
   int tmphostlen;
 
-#ifdef LIBVNCSERVER_IPv6
-  client->sock = ConnectClientToTcpAddr6(repeaterHost, repeaterPort);
-  if (client->sock == -1)
-#endif
+//#ifdef LIBVNCSERVER_IPv6
+//  client->sock = ConnectClientToTcpAddr6(repeaterHost, repeaterPort);
+//  if (client->sock == -1)
+//#endif
   {
     unsigned int host;
-    if (!StringToIPAddr(repeaterHost, &host)) {
-      rfbClientLog("Couldn't convert '%s' to host address\n", repeaterHost);
-      return FALSE;
-    }
+ //   if (!StringToIPAddr(repeaterHost, &host)) {
+   //   rfbClientLog("Couldn't convert '%s' to host address\n", repeaterHost);
+     // return FALSE;
+   // }
 
-    client->sock = ConnectClientToTcpAddr(host, repeaterPort);
+  //  client->sock = ConnectClientToTcpAddr(host, repeaterPort);
   }
 
   if (client->sock < 0) {
@@ -388,8 +361,8 @@ rfbBool ConnectToRFBRepeater(rfbClient* client,const char *repeaterHost, int rep
     return FALSE;
   }
 
-  if (!SetNonBlocking(client->sock))
-    return FALSE;
+//  if (!SetNonBlocking(client->sock))
+  //  return FALSE;
 
   if (!ReadFromRFBServer(client, pv, sz_rfbProtocolVersionMsg))
     return FALSE;
@@ -1004,12 +977,12 @@ InitialiseRFBConnection(rfbClient* client)
        that pmw's monitor can make test connections */
 
   if (client->listenSpecified)
-    errorMessageOnReadFailure = FALSE;
+  //  errorMessageOnReadFailure = FALSE;
 
   if (!ReadFromRFBServer(client, pv, sz_rfbProtocolVersionMsg)) return FALSE;
   pv[sz_rfbProtocolVersionMsg]=0;
 
-  errorMessageOnReadFailure = TRUE;
+ // errorMessageOnReadFailure = TRUE;
 
   pv[sz_rfbProtocolVersionMsg] = 0;
 
@@ -1364,18 +1337,18 @@ SetFormatAndEncodings(rfbClient* client)
     }
   }
   else {
-    if (SameMachine(client->sock)) {
+  //  if (SameMachine(client->sock)) {
       /* TODO:
       if (!tunnelSpecified) {
       */
-      rfbClientLog("Same machine: preferring raw encoding\n");
-      encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingRaw);
+   //   rfbClientLog("Same machine: preferring raw encoding\n");
+     // encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingRaw);
       /*
       } else {
 	rfbClientLog("Tunneling active: preferring tight encoding\n");
       }
       */
-    }
+ //   }
 
     encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingCopyRect);
 #ifdef LIBVNCSERVER_HAVE_LIBZ

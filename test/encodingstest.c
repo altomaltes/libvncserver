@@ -13,7 +13,6 @@
 #define ALL_AT_ONCE
 /*#define VERY_VERBOSE*/
 
-static MUTEX(frameBufferMutex);
 
 typedef struct { int id; char* str; } encoding_t;
 static encoding_t testEncodings[]={
@@ -43,18 +42,15 @@ static const int width=400,height=300;
 static unsigned int statistics[2][NUMBER_OF_ENCODINGS_TO_TEST];
 static unsigned int totalFailed,totalCount;
 static unsigned int countGotUpdate;
-static MUTEX(statisticsMutex);
 
 static void initStatistics(void) {
 	memset(statistics[0],0,sizeof(int)*NUMBER_OF_ENCODINGS_TO_TEST);
 	memset(statistics[1],0,sizeof(int)*NUMBER_OF_ENCODINGS_TO_TEST);
 	totalFailed=totalCount=0;
-	INIT_MUTEX(statisticsMutex);
 }
 
 
 static void updateStatistics(int encodingIndex,rfbBool failed) {
-	LOCK(statisticsMutex);
 	if(failed) {
 		statistics[1][encodingIndex]++;
 		totalFailed++;
@@ -62,7 +58,6 @@ static void updateStatistics(int encodingIndex,rfbBool failed) {
 	statistics[0][encodingIndex]++;
 	totalCount++;
 	countGotUpdate++;
-	UNLOCK(statisticsMutex);
 }
 
 /* Here begin the functions for the client. They will be called in a
@@ -77,7 +72,6 @@ static rfbBool doFramebuffersMatch(rfbScreenInfo* server,rfbClient* client,
 	unsigned int total=0,diff=0;
 	if(server->width!=client->width || server->height!=client->height)
 		return FALSE;
-	LOCK(frameBufferMutex);
 	/* TODO: write unit test for colour transformation, use here, too */
 	for(i=0;i<server->width;i++)
 		for(j=0;j<server->height;j++)
@@ -86,14 +80,12 @@ static rfbBool doFramebuffersMatch(rfbScreenInfo* server,rfbClient* client,
 				unsigned char cl=client->frameBuffer[k+i*4+j*client->width*4];
 
 				if(maxDelta==0 && s!=cl) {
-					UNLOCK(frameBufferMutex);
 					return FALSE;
 				} else {
 					total++;
 					diff+=(s>cl?s-cl:cl-s);
 				}
 			}
-	UNLOCK(frameBufferMutex);
 	if(maxDelta>0 && diff/total>=maxDelta)
 		return FALSE;
 	return TRUE;
@@ -165,11 +157,11 @@ static void* clientLoop(void* data) {
 		updateStatistics(cd->encodingIndex,TRUE);
 		return NULL;
 	}
-	while(1) {
-		if(WaitForMessage(client,50)>=0)
-			if(!HandleRFBServerMessage(client))
-				break;
-	}
+//	while(1) {
+	//	if(WaitForMessage(client,50)>=0)
+//			if(!HandleRFBServerMessage(client))
+//				break;
+//	}
 	free(((clientData*)client->clientData)->display);
 	free(client->clientData);
 	client->clientData = NULL;
@@ -195,7 +187,7 @@ static void startClient(int encodingIndex,rfbScreenInfo* server) {
 	cd->encodingIndex=encodingIndex;
 	cd->server=server;
 	cd->display=(char*)malloc(6);
-	sprintf(cd->display,":%d",server->port-5900);
+//	sprintf(cd->display,":%d",server->port-5900);
 
 	pthread_create(&all_threads[thread_counter++],NULL,clientLoop,(void*)client);
 }
@@ -207,19 +199,16 @@ static void idle(rfbScreenInfo* server)
 	int c;
 	rfbBool goForward;
 
-	LOCK(statisticsMutex);
 #ifdef ALL_AT_ONCE
 	goForward=(countGotUpdate==NUMBER_OF_ENCODINGS_TO_TEST);
 #else
 	goForward=(countGotUpdate==1);
 #endif
 
-	UNLOCK(statisticsMutex);
 	if(!goForward)
 	  return;
 	countGotUpdate=0;
 
-	LOCK(frameBufferMutex);
 	{
 		int i,j;
 		int x1=(rand()%(server->width-1)),x2=(rand()%(server->width-1)),
@@ -238,7 +227,6 @@ static void idle(rfbScreenInfo* server)
 		rfbLog("Sent update (%d,%d)-(%d,%d)\n",x1,y1,x2,y2);
 #endif
 	}
-	UNLOCK(frameBufferMutex);
 }
 
 /* log function (to show what messages are from the client) */

@@ -49,7 +49,7 @@ FileTransferMsg GetFileUploadCompressedLevelErrMsg();
 FileTransferMsg ChkFileUploadErr(rfbClientPtr cl, rfbTightClientPtr data);
 FileTransferMsg ChkFileUploadWriteErr(rfbClientPtr cl, rfbTightClientPtr data, char* pBuf);
 
-void CreateDirectory(char* dirName);
+//void CreateDirectory(char* dirName);
 void FileUpdateComplete(rfbClientPtr cl, rfbTightClientPtr data);
 void CloseUndoneFileUpload(rfbClientPtr cl, rfbTightClientPtr data);
 void CloseUndoneFileDownload(rfbClientPtr cl, rfbTightClientPtr data);

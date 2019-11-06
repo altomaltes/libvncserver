@@ -456,7 +456,7 @@ int main(int argc, char **argv)
     /* main loop */
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     while(!quit) {
-        int i=WaitForMessage(client,10000/framerate); /* useful for timeout to be no more than 10 msec per second (=10000/framerate usec) */
+   //     int i=WaitForMessage(client,10000/framerate); /* useful for timeout to be no more than 10 msec per second (=10000/framerate usec) */
 	if (i>0) {
             if(!HandleRFBServerMessage(client))
                 quit=TRUE;

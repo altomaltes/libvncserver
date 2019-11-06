@@ -21,6 +21,10 @@
  * vncauth.c - Functions for VNC password management and authentication.
  */
 
+#include <rfb/rfbproto.h>
+#ifdef LIBVNCSERVER_HAVE_SYS_STAT_H
+#endif
+
 #ifdef __STRICT_ANSI__
 #define _BSD_SOURCE
 #define _POSIX_SOURCE
@@ -34,7 +38,7 @@
 #ifdef LIBVNCSERVER_HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-#include <rfb/rfbproto.h>
+
 #include "d3des.h"
 
 #include <string.h>
@@ -213,3 +217,4 @@ rfbEncryptBytes2(unsigned char *where, const int length, unsigned char *key) {
     rfbDes(where + i, where + i);
   }
 }
+

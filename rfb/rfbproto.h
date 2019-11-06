@@ -66,9 +66,13 @@
 #define LIBVNCSERVER_WORDS_BIGENDIAN
 typedef int8_t rfbBool;
 #include <sys/timeb.h>
-#include <winsock2.h>
 #endif
-#include <rfb/rfbconfig.h>
+
+#if defined(WIN32) 
+  #include <rfb/win-config.h>
+#else
+  #include <rfb/rfbconfig.h>
+#endif
 
 #ifdef LIBVNCSERVER_HAVE_LIBZ
 #include <zlib.h>
@@ -95,11 +99,9 @@ typedef int8_t rfbBool;
 #ifdef LIBVNCSERVER_HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
-#ifdef LIBVNCSERVER_HAVE_NETINET_IN_H
-#include <netinet/in.h>
-#endif
-#define SOCKET int
+
 typedef int8_t rfbBool;
+
 #undef FALSE
 #define FALSE 0
 #undef TRUE
@@ -243,7 +245,7 @@ typedef struct {
  * to identify if the server supports File Transfer
  */
 
-typedef char rfbProtocolVersionMsg[13];	/* allow extra byte for null */
+typedef char rfbProtocolVersionMsg[ 13 ];	/* allow extra byte for null */
 
 #define sz_rfbProtocolVersionMsg 12
 

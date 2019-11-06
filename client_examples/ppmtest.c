@@ -9,6 +9,8 @@
 #include <errno.h>
 #include <rfb/rfbclient.h>
 
+void * rfbErr;
+
 static void PrintRect(rfbClient* client, int x, int y, int w, int h) {
 	rfbClientLog("Received an update for %d,%d,%d,%d.\n",x,y,w,h);
 }
@@ -102,8 +104,8 @@ main(int argc, char **argv)
 	while (time(NULL)-t<5) {
 		static int i=0;
 		fprintf(stderr,"\r%d",i++);
-		if(WaitForMessage(client,50)<0)
-			break;
+//		if(WaitForMessage(client,50)<0)
+	//		break;
 		if(!HandleRFBServerMessage(client))
 			break;
 	}

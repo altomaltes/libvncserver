@@ -32,28 +32,33 @@
 static rfbBool
 HandleCoRREBPP (rfbClient* client, int rx, int ry, int rw, int rh)
 {
-    rfbRREHeader hdr;
+    rfbRREHeader * hdr;
+    uint32_t nSubrects;  
     int i;
     CARDBPP pix;
     uint8_t *ptr;
     int x, y, w, h;
 
-    if (!ReadFromRFBServer(client, (char *)&hdr, sz_rfbRREHeader))
+    hdr= (rfbRREHeader *)getStreamBytes(client, sz_rfbRREHeader );
+
+    if (!hdr)
 	return FALSE;
 
-    hdr.nSubrects = rfbClientSwap32IfLE(hdr.nSubrects);
+    nSubrects= hdr->nSubrects;
+
+    nSubrects= rfbClientSwap32IfLE(nSubrects);
 
     if (!ReadFromRFBServer(client, (char *)&pix, sizeof(pix)))
 	return FALSE;
 
     client->GotFillRect(client, rx, ry, rw, rh, pix);
 
-    if (hdr.nSubrects > RFB_BUFFER_SIZE / (4 + (BPP / 8)) || !ReadFromRFBServer(client, client->buffer, hdr.nSubrects * (4 + (BPP / 8))))
+    if (nSubrects > RFB_BUFFER_SIZE / (4 + (BPP / 8)) || !ReadFromRFBServer(client, client->buffer, nSubrects * (4 + (BPP / 8))))
 	return FALSE;
 
     ptr = (uint8_t *)client->buffer;
 
-    for (i = 0; i < hdr.nSubrects; i++) {
+    for (i = 0; i < nSubrects; i++) {
 	pix = *(CARDBPP *)ptr;
 	ptr += BPP/8;
 	x = *ptr++;

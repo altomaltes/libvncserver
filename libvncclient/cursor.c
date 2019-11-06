@@ -41,7 +41,7 @@ rfbBool HandleCursorShape(rfbClient* client,int xhot, int yhot, int width, int h
 {
   int bytesPerPixel;
   size_t bytesPerRow, bytesMaskData;
-  rfbXCursorColors rgb;
+  rfbXCursorColors * rgb;
   uint32_t colors[2];
   char *buf;
   uint8_t *ptr;
@@ -62,31 +62,26 @@ rfbBool HandleCursorShape(rfbClient* client,int xhot, int yhot, int width, int h
   if (client->rcSource == NULL)
     return FALSE;
 
-  buf = malloc(bytesMaskData);
-  if (buf == NULL) {
-    free(client->rcSource);
-    client->rcSource = NULL;
-    return FALSE;
-  }
-
   /* Read and decode cursor pixel data, depending on the encoding type. */
 
   if (enc == rfbEncodingXCursor) {
     /* Read and convert background and foreground colors. */
-    if (!ReadFromRFBServer(client, (char *)&rgb, sz_rfbXCursorColors)) {
+
+    rgb= (rfbXCursorColors*)getStreamBytes( client, sz_rfbXCursorColors );
+
+    if ( !rgb ) {
       free(client->rcSource);
       client->rcSource = NULL;
-      free(buf);
       return FALSE;
     }
-    colors[0] = RGB24_TO_PIXEL(32, rgb.backRed, rgb.backGreen, rgb.backBlue);
-    colors[1] = RGB24_TO_PIXEL(32, rgb.foreRed, rgb.foreGreen, rgb.foreBlue);
+    colors[0] = RGB24_TO_PIXEL(32, rgb->backRed, rgb->backGreen, rgb->backBlue);
+    colors[1] = RGB24_TO_PIXEL(32, rgb->foreRed, rgb->foreGreen, rgb->foreBlue);
 
     /* Read 1bpp pixel data into a temporary buffer. */
-    if (!ReadFromRFBServer(client, buf, bytesMaskData)) {
+    buf= (char*)getStreamBytes( client, bytesMaskData );
+    if ( !buf ) {
       free(client->rcSource);
       client->rcSource = NULL;
-      free(buf);
       return FALSE;
     }
 

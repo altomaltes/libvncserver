@@ -46,19 +46,19 @@ int main(int argc,char** argv)
 		 /* blue */ ((i*32/400));
 
   /* Now for the repeater-specific part: */
-  server->port = -1; /* do not listen on any port */
-  server->ipv6port = -1; /* do not listen on any port */
+//  server->port = -1; /* do not listen on any port */
+  //server->ipv6port = -1; /* do not listen on any port */
 
-  sock = rfbConnectToTcpAddr(repeaterHost, repeaterPort);
-  if (sock < 0) {
-    perror("connect to repeater");
-    return 1;
-  }
-  if (write(sock, id, idlen+1) != idlen+1) {
-    perror("writing id");
-    return 1;
-  }
-  cl = rfbNewClient(server, sock);
+//  sock = rfbConnectToTcpAddr(repeaterHost, repeaterPort);
+//  if (sock < 0) {
+//    perror("connect to repeater");
+//    return 1;
+//  }
+//  if (write(sock, id, idlen+1) != idlen+1) {
+//    perror("writing id");
+//    return 1;
+//  }
+//  cl = rfbNewClient(server, sock);
   if (!cl) {
     perror("new client");
     return 1;

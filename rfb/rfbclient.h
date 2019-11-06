@@ -50,6 +50,7 @@
 #if LIBVNCSERVER_HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+
 #include <rfb/rfbproto.h>
 #include <rfb/keysym.h>
 
@@ -96,7 +97,7 @@ extern "C"
 
 typedef struct {
   FILE* file;
-  struct timeval tv;
+ //struct timeval tv;
   rfbBool readTimestamp;
   rfbBool doNotSleep;
 } rfbVNCRec;
@@ -643,21 +644,10 @@ typedef struct _rfbClientProtocolExtension {
 
 void rfbClientRegisterExtension(rfbClientProtocolExtension* e);
 
-/* sockets.c */
+//extern rfbBool errorMessageOnReadFailure;
 
-extern rfbBool errorMessageOnReadFailure;
-
-extern rfbBool ReadFromRFBServer(rfbClient* client, char *out, unsigned int n);
-extern rfbBool WriteToRFBServer(rfbClient* client, char *buf, int n);
-extern int FindFreeTcpPort(void);
-extern int ListenAtTcpPort(int port);
-extern int ListenAtTcpPortAndAddress(int port, const char *address);
-extern int ConnectClientToTcpAddr(unsigned int host, int port);
-extern int ConnectClientToTcpAddr6(const char *hostname, int port);
-extern int ConnectClientToUnixSock(const char *sockFile);
-extern int AcceptTcpConnection(int listenSock);
-extern rfbBool SetNonBlocking(int sock);
-extern rfbBool SetDSCP(int sock, int dscp);
+//extern rfbBool Read FromRFBServer(rfbClient* client, char *out, unsigned int n);
+//extern rfbBool Write ToRFBServer(rfbClient* client, char *buf, int n);
 
 extern rfbBool StringToIPAddr(const char *str, unsigned int *addr);
 extern rfbBool SameMachine(int sock);

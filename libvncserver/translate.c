@@ -244,7 +244,7 @@ rfbTranslateNone(char *table, rfbPixelFormat *in, rfbPixelFormat *out,
 rfbBool
 rfbSetTranslateFunction(rfbClientPtr cl)
 {
-    rfbLog("Pixel format for client %s:\n",cl->host);
+    rfbLog("Pixel format for client %s:\n","cl->host");
     PrintPixelFormat(&cl->format);
 
     /*
@@ -394,7 +394,7 @@ rfbSetClientColourMapBGR233(rfbClientPtr cl)
 
     len += 256 * 3 * 2;
 
-    if (rfbWriteExact(cl, buf, len) < 0) {
+    if (rfbPushClientStream( cl,  buf, len) < 0) {
         rfbLogPerror("rfbSetClientColourMapBGR233: write");
         rfbCloseClient(cl);
         return FALSE;
@@ -423,7 +423,6 @@ rfbSetClientColourMap(rfbClientPtr cl, int firstColour, int nColours)
     }
 
     if (cl->format.trueColour) {
-	LOCK(cl->updateMutex);
 	(*rfbInitColourMapSingleTableFns
 	    [BPP2OFFSET(cl->format.bitsPerPixel)]) (&cl->translateLookupTable,
 					     &cl->screen->serverFormat, &cl->format,&cl->screen->colourMap);
@@ -431,7 +430,6 @@ rfbSetClientColourMap(rfbClientPtr cl, int firstColour, int nColours)
 	sraRgnDestroy(cl->modifiedRegion);
 	cl->modifiedRegion =
 	  sraRgnCreateRect(0,0,cl->screen->width,cl->screen->height);
-	UNLOCK(cl->updateMutex);
 
 	return TRUE;
     }

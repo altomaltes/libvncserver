@@ -40,14 +40,13 @@ rfbBool enableBackChannel(rfbClientPtr cl, void** data, int encoding)
 		backChannelMsg msg;
 		const char* text="Server acknowledges back channel encoding\n";
 		uint32_t length = strlen(text)+1;
-		int n;
 
 		rfbLog("Enabling the back channel\n");
 
 		msg.type = rfbBackChannel;
 		msg.size = Swap32IfLE(length);
-		if((n = rfbWriteExact(cl, (char*)&msg, sizeof(msg))) <= 0 ||
-				(n = rfbWriteExact(cl, text, length)) <= 0) {
+		if(( rfbPushClientStream( cl, (char*)&msg, sizeof(msg))) < 0 ||
+				( rfbPushClientStream(cl, text, length)) < 0) {
 			rfbLogPerror("enableBackChannel: write");
 		}
 		return TRUE;
@@ -60,27 +59,24 @@ static rfbBool handleBackChannelMessage(rfbClientPtr cl, void* data,
 {
 	if(message->type == rfbBackChannel) {
 		backChannelMsg msg;
-		char* text;
-		int n;
-		if((n = rfbReadExact(cl, ((char*)&msg)+1, sizeof(backChannelMsg)-1)) <= 0) {
-			if(n != 0)
-				rfbLogPerror("handleBackChannelMessage: read");
-			rfbCloseClient(cl);
-			return TRUE;
+		char* text= getStreamBytes( cl, sizeof(backChannelMsg)-1);
+		
+		if( !text ) 
+        { rfbCloseClient(cl);
+		  return TRUE;
 		}
+        
+        text--; msg= *(backChannelMsg*)text;
+
 		msg.size = Swap32IfLE(msg.size);
-		if((text = malloc(msg.size)) == NULL) {
-			rfbErr("Could not allocate %d bytes\n", msg.size);
-			return TRUE;
-		}
-		if((n = rfbReadExact(cl, text, msg.size)) <= 0) {
-			if(n != 0)
-				rfbLogPerror("handleBackChannelMessage: read");
+
+		text= getStreamBytes( cl, msg.size );
+		if(!text) {
+            rfbLogPerror("handleBackChannelMessage: read");
 			rfbCloseClient(cl);
 			return TRUE;
 		}
 		rfbLog("got message:\n%s\n", text);
-		free(text);
 		return TRUE;
 	}
 	return FALSE;

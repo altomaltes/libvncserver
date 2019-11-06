@@ -514,7 +514,7 @@ int main(int argc,char** argv) {
 		break;
 	    }
 	    else {
-	      i=WaitForMessage(cl,500);
+	//      i=WaitForMessage(cl,500);
 	      if(i<0)
 		{
 		  cleanup(cl);
