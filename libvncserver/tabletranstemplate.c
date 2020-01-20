@@ -101,9 +101,9 @@ rfbTranslateWithRGBTablesINtoOUT (char *table, rfbPixelFormat *in,
         opLineEnd = &op[width];
 
         while (op < opLineEnd) {
-            *(op++) = (redTable[(*ip >> in->redShift) & in->redMax] |
+            *(op++) = (redTable[  (*ip >> in->redShift) & in->redMax] |
                        greenTable[(*ip >> in->greenShift) & in->greenMax] |
-                       blueTable[(*ip >> in->blueShift) & in->blueMax]);
+                       blueTable[ (*ip >> in->blueShift) & in->blueMax]);
             ip++;
         }
         ip += ipextra;

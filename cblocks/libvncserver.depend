@@ -2,6 +2,8 @@
 1572421401 source:x:\arm\libvncserver\common\d3des.c
 	"d3des.h"
 
+1578571552 
+
 1572421401 x:\arm\libvncserver\common\d3des.h
 
 1572530428 source:x:\arm\libvncserver\common\md5.c
@@ -10,6 +12,8 @@
 	<string.h>
 	"md5.h"
 	"rfb/rfbconfig.h"
+
+1572421402 nfig.h"
 
 1572421401 x:\arm\libvncserver\common\md5.h
 	<stdio.h>
@@ -32,8 +36,12 @@
 	<intrin.h>
 	"lzo/lzo1x.h"
 
+1572421402 .h"
+
 1572421401 x:\arm\libvncserver\common\minilzo.h
 	"lzoconf.h"
+
+1572421402 "
 
 1572421401 x:\arm\libvncserver\common\lzoconf.h
 	<config.h>
@@ -46,6 +54,8 @@
 1572421401 source:x:\arm\libvncserver\common\sha1.c
 	"sha.h"
 	"sha-private.h"
+
+1572421401 te.h"
 
 1572421401 x:\arm\libvncserver\common\sha.h
 	<stdint.h>
@@ -60,6 +70,8 @@
 	<jerror.h>
 	<setjmp.h>
 	"./turbojpeg.h"
+
+1572421401 eg.h"
 
 1572421401 x:\arm\libvncserver\common\turbojpeg.h
 
@@ -76,6 +88,8 @@
 	<time.h>
 	<sys/time.h>
 
+1578571594 h>
+
 1572876386 x:\arm\libvncserver\rfb\rfbproto.h
 	<stdint.h>
 	<sys/timeb.h>
@@ -88,6 +102,8 @@
 
 1572941466 source:x:\arm\libvncserver\libvncserver\auth.c
 	<rfb/rfb.h>
+
+1572421402 >
 
 1572876308 x:\arm\libvncserver\rfb\rfb.h
 	<stdio.h>
@@ -143,9 +159,13 @@
 	<conio.h>
 	<sys/timeb.h>
 
+1578494234 .h>
+
 1572421402 source:x:\arm\libvncserver\libvncserver\rfbregion.c
 	<rfb/rfb.h>
 	<rfb/rfbregion.h>
+
+1572421402 gion.h>
 
 1572941847 source:x:\arm\libvncserver\libvncserver\rfbserver.c
 	<stdio.h>
@@ -201,6 +221,8 @@
 	<rfb/rfb.h>
 	<rfb/keysym.h>
 
+1572421402 m.h>
+
 1572421402 x:\arm\libvncserver\rfb\keysym.h
 
 1572421402 source:x:\arm\libvncserver\libvncserver\stats.c
@@ -229,6 +251,8 @@
 	"tabletrans24template.c"
 	"tabletrans24template.c"
 	"tabletrans24template.c"
+
+1572875922 s24template.c"
 
 1572421402 x:\arm\libvncserver\libvncserver\tableinitcmtemplate.c
 
@@ -265,6 +289,8 @@
 	"zrleencodetemplate.c"
 	"zrleencodetemplate.c"
 
+1572524267 etemplate.c"
+
 1572421402 x:\arm\libvncserver\libvncserver\zrleoutstream.h
 	<zlib.h>
 	"zrletypes.h"
@@ -277,6 +303,8 @@
 	"zrlepalettehelper.h"
 	<assert.h>
 	"zywrletemplate.c"
+
+1572424875 plate.c"
 
 1572421402 x:\arm\libvncserver\libvncserver\zrlepalettehelper.h
 	"zrletypes.h"
@@ -294,6 +322,8 @@
 
 1572877413 source:x:\arm\libvncserver\libvncclient\cursor.c
 	<rfb/rfbclient.h>
+
+1572421402 ient.h>
 
 1572877923 x:\arm\libvncserver\rfb\rfbclient.h
 	<arpa/inet.h>
@@ -429,6 +459,8 @@
 	"rfb/rfb.h"
 	"filelistinfo.h"
 
+1572421402 nfo.h"
+
 1572421402 x:\arm\libvncserver\libvncserver\tightvnc-filetransfer\filelistinfo.h
 	<limits.h>
 
@@ -437,6 +469,8 @@
 	"rfbtightproto.h"
 	"handlefiletransferrequest.h"
 	"filetransfermsg.h"
+
+1572421402 fermsg.h"
 
 1572941944 x:\arm\libvncserver\libvncserver\tightvnc-filetransfer\rfbtightproto.h
 	<rfb/rfb.h>
@@ -520,7 +554,7 @@
 1572421402 source:x:\arm\libvncasync.org\libvncserver\corre.c
 	<rfb/rfb.h>
 
-1573026797 source:x:\arm\libvncasync.org\libvncserver\cursor.c
+1573196813 source:x:\arm\libvncasync.org\libvncserver\cursor.c
 	"rfb/rfb.h"
 	"rfb/rfbregion.h"
 	"private.h"
@@ -539,7 +573,7 @@
 1572421402 source:x:\arm\libvncasync.org\libvncserver\hextile.c
 	<rfb/rfb.h>
 
-1572938654 source:x:\arm\libvncasync.org\libvncserver\main.c
+1578494234 source:x:\arm\libvncasync.org\libvncserver\main.c
 	<rfb/rfb.h>
 	<rfb/rfbregion.h>
 	"private.h"
@@ -614,7 +648,7 @@
 
 1572421402 x:\arm\libvncasync.org\libvncserver\tableinittctemplate.c
 
-1572421402 x:\arm\libvncasync.org\libvncserver\tabletranstemplate.c
+1576158946 x:\arm\libvncasync.org\libvncserver\tabletranstemplate.c
 
 1572423737 x:\arm\libvncasync.org\libvncserver\tableinit24.c
 	<stdint.h>
@@ -695,7 +729,7 @@
 1573026443 x:\arm\libvncasync.org\rfb\win-config.h
 	<stdint.h>
 
-1573027757 x:\arm\libvncasync.org\rfb\rfb.h
+1578571594 x:\arm\libvncasync.org\rfb\rfb.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -707,7 +741,7 @@
 
 1572421402 x:\arm\libvncasync.org\rfb\rfbregion.h
 
-1573027786 source:x:\arm\libvncasync.org\libvncserver\rfbserver.c
+1578571552 source:x:\arm\libvncasync.org\libvncserver\rfbserver.c
 	<stdio.h>
 	<string.h>
 	<rfb/rfb.h>
@@ -737,9 +771,603 @@
 
 1572421402 x:\arm\libvncasync.org\libvncserver\scale.h
 
-1573027961 source:x:\arm\libvncasync.org\common\comms.c
+1576061136 source:x:\arm\libvncasync.org\common\comms.c
 	<rfb/rfb.h>
 	<errno.h>
 
 1572421402 x:\arm\libvncasync.org\rfb\keysym.h
+
+1578653182 source:/usr/src/v2/libvncasync-0.9.12/common/d3des.c
+	"d3des.h"
+
+1578653182 /usr/src/v2/libvncasync-0.9.12/common/d3des.h
+
+1578653184 source:/usr/src/v2/libvncasync-0.9.12/common/md5.c
+	<sys/types.h>
+	<stdlib.h>
+	<string.h>
+	"md5.h"
+
+1578653182 /usr/src/v2/libvncasync-0.9.12/common/md5.h
+	<stdio.h>
+	<limits.h>
+	<stdint.h>
+
+1578653183 source:/usr/src/v2/libvncasync-0.9.12/common/minilzo.c
+	<config.h>
+	<limits.h>
+	<stddef.h>
+	"minilzo.h"
+	"lzo/lzoconf.h"
+	<string.h>
+	<string.h>
+	<assert.h>
+	<unchecked.h>
+	<intrin.h>
+	"lzo/lzo1x.h"
+
+1578653183 /usr/src/v2/libvncasync-0.9.12/common/minilzo.h
+	"lzoconf.h"
+
+1578653182 /usr/src/v2/libvncasync-0.9.12/common/lzoconf.h
+	<config.h>
+	<limits.h>
+	<stddef.h>
+	"lzodefs.h"
+
+1578653182 /usr/src/v2/libvncasync-0.9.12/common/lzodefs.h
+
+1578653183 source:/usr/src/v2/libvncasync-0.9.12/common/sha1.c
+	"sha.h"
+	"sha-private.h"
+
+1578653183 /usr/src/v2/libvncasync-0.9.12/common/sha.h
+	<stdint.h>
+
+1578653183 /usr/src/v2/libvncasync-0.9.12/common/sha-private.h
+
+1578912639 source:/usr/src/v2/libvncasync-0.9.12/common/turbojpeg.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<jpeglib.h>
+	<jerror.h>
+	<setjmp.h>
+	"./turbojpeg.h"
+
+1578653184 /usr/src/v2/libvncasync-0.9.12/common/turbojpeg.h
+
+1578653184 source:/usr/src/v2/libvncasync-0.9.12/common/vncauth.c
+	<rfb/rfbproto.h>
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	"d3des.h"
+	<string.h>
+	<math.h>
+	<sys/stat.h>
+	<time.h>
+	<sys/time.h>
+
+1578653524 /usr/src/v2/libvncasync-0.9.12/rfb/rfbproto.h
+	<stdint.h>
+	<sys/timeb.h>
+	<rfb/win-config.h>
+	<rfb/aarch64-config.h>
+	<zlib.h>
+	<endian.h>
+	<sys/time.h>
+
+1578653197 /usr/src/v2/libvncasync-0.9.12/rfb/win-config.h
+	<stdint.h>
+
+1578653353 /usr/src/v2/libvncasync-0.9.12/rfb/aarch64-config.h
+
+1578653184 source:/usr/src/v2/libvncasync-0.9.12/common/zywrletemplate.c
+
+1578653196 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/auth.c
+	<rfb/rfb.h>
+
+1578913806 /usr/src/v2/libvncasync-0.9.12/rfb/rfb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<rfb/rfbproto.h>
+	<arpa/inet.h>
+	<sys/select.h>
+	<sys/types.h>
+	<winsock2.h>
+
+1578653195 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/cargs.c
+	<rfb/rfb.h>
+
+1578653190 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/corre.c
+	<rfb/rfb.h>
+
+1578653194 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/cursor.c
+	"rfb/rfb.h"
+	"rfb/rfbregion.h"
+	"private.h"
+
+1578653197 /usr/src/v2/libvncasync-0.9.12/rfb/rfbregion.h
+
+1578653191 /usr/src/v2/libvncasync-0.9.12/libvncserver/private.h
+
+1578653190 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/cutpaste.c
+	<rfb/rfb.h>
+
+1578653190 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/draw.c
+	<rfb/rfb.h>
+
+1578653190 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/font.c
+	<rfb/rfb.h>
+
+1578653191 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/hextile.c
+	<rfb/rfb.h>
+
+1578660282 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/main.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<stdarg.h>
+	<errno.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<unistd.h>
+	<fcntl.h>
+	<signal.h>
+	<time.h>
+	<fcntl.h>
+	<conio.h>
+	<sys/timeb.h>
+
+1578653191 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/rfbregion.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+
+1578915742 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/rfbserver.c
+	<stdio.h>
+	<string.h>
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<fcntl.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<io.h>
+	<unistd.h>
+	<pwd.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<stdarg.h>
+	"scale.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<dirent.h>
+	<errno.h>
+	<time.h>
+	<limits.h>
+	<direct.h>
+
+1578653192 /usr/src/v2/libvncasync-0.9.12/libvncserver/scale.h
+
+1578653191 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/rfbssl_none.c
+	"rfbssl.h"
+
+1578653195 /usr/src/v2/libvncasync-0.9.12/libvncserver/rfbssl.h
+	"rfb/rfb.h"
+
+1578653191 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/rre.c
+	<rfb/rfb.h>
+
+1578653190 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/scale.c
+	<string.h>
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<fcntl.h>
+	<unistd.h>
+	<pwd.h>
+
+1578653192 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/selbox.c
+	<ctype.h>
+	<rfb/rfb.h>
+	<rfb/keysym.h>
+
+1578653197 /usr/src/v2/libvncasync-0.9.12/rfb/keysym.h
+
+1578653192 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/stats.c
+	<rfb/rfb.h>
+
+1578653195 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/translate.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinit24.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+
+1578653192 /usr/src/v2/libvncasync-0.9.12/libvncserver/tableinitcmtemplate.c
+
+1578653192 /usr/src/v2/libvncasync-0.9.12/libvncserver/tableinittctemplate.c
+
+1578653196 /usr/src/v2/libvncasync-0.9.12/libvncserver/tabletranstemplate.c
+
+1578653195 /usr/src/v2/libvncasync-0.9.12/libvncserver/tableinit24.c
+	<stdint.h>
+
+1578653192 /usr/src/v2/libvncasync-0.9.12/libvncserver/tabletrans24template.c
+
+1578653193 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/ultra.c
+	<rfb/rfb.h>
+	<lzo/lzo1x.h>
+	"minilzo.h"
+
+1578653194 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/zlib.c
+	<rfb/rfb.h>
+
+1578653196 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/zrle.c
+	"rfb/rfb.h"
+	"private.h"
+	"zrleoutstream.h"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+
+1578653194 /usr/src/v2/libvncasync-0.9.12/libvncserver/zrleoutstream.h
+	<zlib.h>
+	"zrletypes.h"
+	"rfb/rfb.h"
+
+1578653194 /usr/src/v2/libvncasync-0.9.12/libvncserver/zrletypes.h
+
+1578653196 /usr/src/v2/libvncasync-0.9.12/libvncserver/zrleencodetemplate.c
+	"zrleoutstream.h"
+	"zrlepalettehelper.h"
+	<assert.h>
+	"zywrletemplate.c"
+
+1578653194 /usr/src/v2/libvncasync-0.9.12/libvncserver/zrlepalettehelper.h
+	"zrletypes.h"
+
+1578653184 /usr/src/v2/libvncasync-0.9.12/common/zywrletemplate.c
+
+1578653194 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/zrleoutstream.c
+	"zrleoutstream.h"
+	<stdlib.h>
+
+1578653194 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/zrlepalettehelper.c
+	"zrlepalettehelper.h"
+	<assert.h>
+	<string.h>
+
+1578653193 source:/usr/src/v2/libvncasync-0.9.12/libvncserver/tight.c
+	<rfb/rfb.h>
+	"private.h"
+	<png.h>
+	"turbojpeg.h"
+
+1579083897 source:x:\v2\libvncasync-0.9.12\libvncserver\auth.c
+	<rfb/rfb.h>
+
+1579084246 x:\v2\libvncasync-0.9.12\rfb\rfb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<rfb/rfbproto.h>
+	<arpa/inet.h>
+	<sys/select.h>
+	<sys/types.h>
+	<winsock2.h>
+
+1578653524 x:\v2\libvncasync-0.9.12\rfb\rfbproto.h
+	<stdint.h>
+	<sys/timeb.h>
+	<rfb/win-config.h>
+	<rfb/aarch64-config.h>
+	<zlib.h>
+	<endian.h>
+	<sys/time.h>
+
+1578653197 x:\v2\libvncasync-0.9.12\rfb\win-config.h
+	<stdint.h>
+
+1578653353 x:\v2\libvncasync-0.9.12\rfb\aarch64-config.h
+
+1578653195 source:x:\v2\libvncasync-0.9.12\libvncserver\cargs.c
+	<rfb/rfb.h>
+
+1578653190 source:x:\v2\libvncasync-0.9.12\libvncserver\corre.c
+	<rfb/rfb.h>
+
+1578653182 source:x:\v2\libvncasync-0.9.12\common\d3des.c
+	"d3des.h"
+
+1578653182 x:\v2\libvncasync-0.9.12\common\d3des.h
+
+1578653184 source:x:\v2\libvncasync-0.9.12\common\md5.c
+	<sys/types.h>
+	<stdlib.h>
+	<string.h>
+	"md5.h"
+
+1578653182 x:\v2\libvncasync-0.9.12\common\md5.h
+	<stdio.h>
+	<limits.h>
+	<stdint.h>
+
+1578653183 source:x:\v2\libvncasync-0.9.12\common\minilzo.c
+	<config.h>
+	<limits.h>
+	<stddef.h>
+	"minilzo.h"
+	"lzo/lzoconf.h"
+	<string.h>
+	<string.h>
+	<assert.h>
+	<unchecked.h>
+	<intrin.h>
+	"lzo/lzo1x.h"
+
+1578653183 x:\v2\libvncasync-0.9.12\common\minilzo.h
+	"lzoconf.h"
+
+1578653182 x:\v2\libvncasync-0.9.12\common\lzoconf.h
+	<config.h>
+	<limits.h>
+	<stddef.h>
+	"lzodefs.h"
+
+1578653182 x:\v2\libvncasync-0.9.12\common\lzodefs.h
+
+1578653183 source:x:\v2\libvncasync-0.9.12\common\sha1.c
+	"sha.h"
+	"sha-private.h"
+
+1578653183 x:\v2\libvncasync-0.9.12\common\sha.h
+	<stdint.h>
+
+1578653183 x:\v2\libvncasync-0.9.12\common\sha-private.h
+
+1578912639 source:x:\v2\libvncasync-0.9.12\common\turbojpeg.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<jpeglib.h>
+	<jerror.h>
+	<setjmp.h>
+	"./turbojpeg.h"
+
+1578653184 x:\v2\libvncasync-0.9.12\common\turbojpeg.h
+
+1578653184 source:x:\v2\libvncasync-0.9.12\common\vncauth.c
+	<rfb/rfbproto.h>
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	"d3des.h"
+	<string.h>
+	<math.h>
+	<sys/stat.h>
+	<time.h>
+	<sys/time.h>
+
+1578653184 source:x:\v2\libvncasync-0.9.12\common\zywrletemplate.c
+
+1578653194 source:x:\v2\libvncasync-0.9.12\libvncserver\cursor.c
+	"rfb/rfb.h"
+	"rfb/rfbregion.h"
+	"private.h"
+
+1578653197 x:\v2\libvncasync-0.9.12\rfb\rfbregion.h
+
+1578653191 x:\v2\libvncasync-0.9.12\libvncserver\private.h
+
+1578653190 source:x:\v2\libvncasync-0.9.12\libvncserver\cutpaste.c
+	<rfb/rfb.h>
+
+1578653190 source:x:\v2\libvncasync-0.9.12\libvncserver\draw.c
+	<rfb/rfb.h>
+
+1578653190 source:x:\v2\libvncasync-0.9.12\libvncserver\font.c
+	<rfb/rfb.h>
+
+1578653191 source:x:\v2\libvncasync-0.9.12\libvncserver\hextile.c
+	<rfb/rfb.h>
+
+1579085139 source:x:\v2\libvncasync-0.9.12\libvncserver\main.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<stdarg.h>
+	<errno.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<unistd.h>
+	<fcntl.h>
+	<signal.h>
+	<time.h>
+	<fcntl.h>
+	<conio.h>
+	<sys/timeb.h>
+
+1578653191 source:x:\v2\libvncasync-0.9.12\libvncserver\rfbregion.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+
+1578921597 source:x:\v2\libvncasync-0.9.12\libvncserver\rfbserver.c
+	<stdio.h>
+	<string.h>
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<fcntl.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<io.h>
+	<unistd.h>
+	<pwd.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<stdarg.h>
+	"scale.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<dirent.h>
+	<errno.h>
+	<time.h>
+	<limits.h>
+	<direct.h>
+
+1578653192 x:\v2\libvncasync-0.9.12\libvncserver\scale.h
+
+1578653191 source:x:\v2\libvncasync-0.9.12\libvncserver\rfbssl_none.c
+	"rfbssl.h"
+
+1578653195 x:\v2\libvncasync-0.9.12\libvncserver\rfbssl.h
+	"rfb/rfb.h"
+
+1578653191 source:x:\v2\libvncasync-0.9.12\libvncserver\rre.c
+	<rfb/rfb.h>
+
+1578653190 source:x:\v2\libvncasync-0.9.12\libvncserver\scale.c
+	<string.h>
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"private.h"
+	<fcntl.h>
+	<unistd.h>
+	<pwd.h>
+
+1578653192 source:x:\v2\libvncasync-0.9.12\libvncserver\selbox.c
+	<ctype.h>
+	<rfb/rfb.h>
+	<rfb/keysym.h>
+
+1578653197 x:\v2\libvncasync-0.9.12\rfb\keysym.h
+
+1578653192 source:x:\v2\libvncasync-0.9.12\libvncserver\stats.c
+	<rfb/rfb.h>
+
+1578653195 source:x:\v2\libvncasync-0.9.12\libvncserver\translate.c
+	<rfb/rfb.h>
+	<rfb/rfbregion.h>
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinitcmtemplate.c"
+	"tableinittctemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tabletranstemplate.c"
+	"tableinit24.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+	"tabletrans24template.c"
+
+1578653192 x:\v2\libvncasync-0.9.12\libvncserver\tableinitcmtemplate.c
+
+1578653192 x:\v2\libvncasync-0.9.12\libvncserver\tableinittctemplate.c
+
+1578653196 x:\v2\libvncasync-0.9.12\libvncserver\tabletranstemplate.c
+
+1578653195 x:\v2\libvncasync-0.9.12\libvncserver\tableinit24.c
+	<stdint.h>
+
+1578653192 x:\v2\libvncasync-0.9.12\libvncserver\tabletrans24template.c
+
+1578653193 source:x:\v2\libvncasync-0.9.12\libvncserver\ultra.c
+	<rfb/rfb.h>
+	<lzo/lzo1x.h>
+	"minilzo.h"
+
+1578653194 source:x:\v2\libvncasync-0.9.12\libvncserver\zlib.c
+	<rfb/rfb.h>
+
+1578653196 source:x:\v2\libvncasync-0.9.12\libvncserver\zrle.c
+	"rfb/rfb.h"
+	"private.h"
+	"zrleoutstream.h"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+	"zrleencodetemplate.c"
+
+1578653194 x:\v2\libvncasync-0.9.12\libvncserver\zrleoutstream.h
+	<zlib.h>
+	"zrletypes.h"
+	"rfb/rfb.h"
+
+1578653194 x:\v2\libvncasync-0.9.12\libvncserver\zrletypes.h
+
+1578653196 x:\v2\libvncasync-0.9.12\libvncserver\zrleencodetemplate.c
+	"zrleoutstream.h"
+	"zrlepalettehelper.h"
+	<assert.h>
+	"zywrletemplate.c"
+
+1578653194 x:\v2\libvncasync-0.9.12\libvncserver\zrlepalettehelper.h
+	"zrletypes.h"
+
+1578653184 x:\v2\libvncasync-0.9.12\common\zywrletemplate.c
+
+1578653194 source:x:\v2\libvncasync-0.9.12\libvncserver\zrleoutstream.c
+	"zrleoutstream.h"
+	<stdlib.h>
+
+1578653194 source:x:\v2\libvncasync-0.9.12\libvncserver\zrlepalettehelper.c
+	"zrlepalettehelper.h"
+	<assert.h>
+	<string.h>
 

@@ -4,7 +4,7 @@
  *
  *  LibVNCServer (C) 2001 Johannes E. Schindelin <Johannes.Schindelin@gmx.de>
  *  Original OSXvnc (C) 2001 Dan McGuirk <mcguirk@incompleteness.net>.
- *  Original Xvnc (C) 1999 AT&T Laboratories Cambridge.  
+ *  Original Xvnc (C) 1999 AT&T Laboratories Cambridge.
  *  All Rights Reserved.
  *
  *  see GPL (latest version) for full details
@@ -55,8 +55,8 @@ static int rfbEnableLogging=1;
 static rfbProtocolExtension* rfbExtensionHead = NULL;
 
 /*
- * This method registers a list of new extensions.  
- * It avoids same extension getting registered multiple times. 
+ * This method registers a list of new extensions.
+ * It avoids same extension getting registered multiple times.
  * The order is not preserved if multiple extensions are
  * registered at one-go.
  */
@@ -87,9 +87,9 @@ rfbRegisterProtocolExtension(rfbProtocolExtension* extension)
 }
 
 /*
- * This method unregisters a list of extensions.  
+ * This method unregisters a list of extensions.
  * These extensions won't be available for any new
- * client connection. 
+ * client connection.
  */
 void
 rfbUnregisterProtocolExtension(rfbProtocolExtension* extension)
@@ -224,7 +224,7 @@ rfbLogProc rfbLog=rfbDefaultLog;
 rfbLogProc rfbErr=rfbDefaultLog;
 
 void rfbScheduleCopyRegion(rfbScreenInfoPtr rfbScreen,sraRegionPtr copyRegion,int dx,int dy)
-{  
+{
    rfbClientIteratorPtr iterator;
    rfbClientPtr cl;
 
@@ -249,7 +249,7 @@ void rfbScheduleCopyRegion(rfbScreenInfoPtr rfbScreen,sraRegionPtr copyRegion,in
 	     sraRgnDestroy(modifiedRegionBackup);
 	  }
        }
-	  
+
        sraRgnOr(cl->copyRegion,copyRegion);
        cl->copyDX = dx;
        cl->copyDY = dy;
@@ -334,7 +334,7 @@ void rfbDoCopyRegion(rfbScreenInfoPtr screen,sraRegionPtr copyRegion,int dx,int 
      }
    }
    sraRgnReleaseIterator(i);
-  
+
    rfbScheduleCopyRegion(screen,copyRegion,dx,dy);
 }
 
@@ -375,7 +375,7 @@ void rfbMarkRectAsModified(rfbScreenInfoPtr screen,int x1,int y1,int x2,int y2)
    if(x1<0) x1=0;
    if(x2>screen->width) x2=screen->width;
    if(x1==x2) return;
-   
+
    if(y1>y2) { i=y1; y1=y2; y2=i; }
    if(y1<0) y1=0;
    if(y2>screen->height) y2=screen->height;
@@ -389,13 +389,13 @@ void rfbMarkRectAsModified(rfbScreenInfoPtr screen,int x1,int y1,int x2,int y2)
    sraRgnDestroy(region);
 }
 
-void 
+void
 rfbStartOnHoldClient(rfbClientPtr cl)
 { cl->onHold = FALSE;
 }
 
 
-void 
+void
 rfbRefuseOnHoldClient(rfbClientPtr cl)
 { rfbCloseClient(cl);
   rfbClientConnectionGone(cl);
@@ -439,7 +439,7 @@ static void rfbDefaultSetXCutText(char* text, int len, rfbClientPtr cl)
 /* TODO: add a nice VNC or RFB cursor */
 
 #if defined(WIN32) || defined(sparc) || !defined(NO_STRICT_ANSI)
-static rfbCursor myCursor = 
+static rfbCursor myCursor =
 {
    FALSE, FALSE, FALSE, FALSE,
    (unsigned char*)"\000\102\044\030\044\102\000",
@@ -450,7 +450,7 @@ static rfbCursor myCursor =
    NULL
 };
 #else
-static rfbCursor myCursor = 
+static rfbCursor myCursor =
 {
    cleanup: FALSE,
    cleanupSource: FALSE,
@@ -530,7 +530,7 @@ rfbBool rfbCheckPasswordSingle( rfbClientPtr cl
   memcpy((char *)auth_tmp, (char *)cl->authChallenge, CHALLENGESIZE);
   rfbEncryptBytes( auth_tmp, cl->screen->authPasswdData );
 
-  if ( !memcmp(auth_tmp, response, len )) 
+  if ( !memcmp(auth_tmp, response, len ))
   { if ( ! cl->screen->authPasswdFirstViewOnly )
     { cl->viewOnly=TRUE;
     }
@@ -603,24 +603,24 @@ static void rfbInitServerFormat(rfbScreenInfoPtr screen, int bitsPerSample)
      format->redShift = 0;
      format->greenShift = 3;
      format->blueShift = 6;
-   } 
-   else 
-   { format->redMax  = 
-     format->greenMax= 
+   }
+   else
+   { format->redMax  =
+     format->greenMax=
      format->blueMax = (1 << bitsPerSample) - 1;
 
-     if ( rfbEndianTest ) 
+     if ( rfbEndianTest )
      { format->redShift  = bitsPerSample * 2;  // JACS, windows compatible
        format->greenShift= bitsPerSample;
        format->blueShift = 0;
-     } 
-     else 
-     { if(format->bitsPerPixel==8*3) 
+     }
+     else
+     { if(format->bitsPerPixel==8*3)
        { format->redShift = bitsPerSample*2;
 	   format->greenShift = bitsPerSample;
 	   format->blueShift = 0;
-       } 
-       else 
+       }
+       else
        { format->redShift  = bitsPerSample*3;
 	   format->greenShift= bitsPerSample*2;
 	   format->blueShift = bitsPerSample;
@@ -633,8 +633,7 @@ rfbScreenInfoPtr rfbGetScreen( int* argc, char** argv
                              , int width,int height,int bitsPerSample
                              , int  stride // samplesPerPixel1 JACS, nos standard stride
                              , int bytesPerPixel )
-{
-   rfbScreenInfoPtr screen=calloc(sizeof(rfbScreenInfo),1);
+{  rfbScreenInfoPtr screen=calloc(sizeof(rfbScreenInfo),1);
 
    if(width&3)
      rfbErr("WARNING: Width (%d) is not a multiple of 4. VncViewer has problems with that.\n",width);
@@ -649,7 +648,6 @@ rfbScreenInfoPtr rfbGetScreen( int* argc, char** argv
    screen->udpClient=NULL;
 
   // screen->maxFd=0;
-//   screen->listenSock=-1;
  //  screen->listen6Sock=-1;
 
    screen->fdQuota = 0.5;
@@ -663,7 +661,7 @@ rfbScreenInfoPtr rfbGetScreen( int* argc, char** argv
    screen->dontDisconnect = FALSE;
    screen->authPasswdData = NULL;
    screen->authPasswdFirstViewOnly = 1;
-   
+
    screen->width = width;
    screen->height = height;
    screen->bitsPerPixel = screen->depth = 8*bytesPerPixel;
@@ -722,7 +720,7 @@ rfbScreenInfoPtr rfbGetScreen( int* argc, char** argv
    screen->ptrAddEvent = rfbDefaultPtrAddEvent;
    screen->setXCutText         = rfbDefaultSetXCutText;
    screen->getCursorPtr        = rfbDefaultGetCursorPtr;
-   screen->setModified      = rfbMarkRectAsModified;
+   screen->setModified         = rfbMarkRectAsModified;
    screen->setTranslateFunction= rfbSetTranslateFunction;
    screen->newClientHook = rfbDefaultNewClientHook;
    screen->displayHook = NULL;
@@ -822,7 +820,7 @@ void rfbScreenCleanup(rfbScreenInfoPtr screen)
     cl1=cl;
   }
   rfbReleaseClientIterator(i);
-    
+
 #define FREE_IF(x) if(screen->x) free(screen->x)
   FREE_IF(colourMap.data.bytes);
   FREE_IF(underCursorBuffer);
@@ -893,14 +891,30 @@ void gettimeofday(struct timeval* tv,char* dummy)
 
 #endif
 
+  extern rfbClientIteratorPtr rfbGetClientIteratorWithClosed(rfbScreenInfoPtr rfbScreen);
+// JACS
+rfbBool rfbUpdateClients( rfbScreenInfoPtr screen )
+{ rfbClientPtr clPrev;
+  rfbClientIteratorPtr i= rfbGetClientIteratorWithClosed(screen);
+  rfbClientPtr cl= rfbClientIteratorHead(i);
+  rfbBool result=FALSE;
+
+  while(cl)
+  { result = rfbUpdateClient(cl);
+    clPrev=cl;
+    cl=rfbClientIteratorNext(i);
+  }
+  rfbReleaseClientIterator(i);
+  return( result );
+}
+
+
 rfbBool
 rfbProcessEvents(rfbScreenInfoPtr screen,long usec)
 {
   rfbClientIteratorPtr i;
   rfbClientPtr cl,clPrev;
   rfbBool result=FALSE;
-  extern rfbClientIteratorPtr
-    rfbGetClientIteratorWithClosed(rfbScreenInfoPtr rfbScreen);
 
   if(usec<0)
     usec=screen->deferUpdateTime*1000;
@@ -993,3 +1007,8 @@ void rfbRunEventLoop(rfbScreenInfoPtr screen, long usec, rfbBool runInBackground
   while(rfbIsActive(screen))
     rfbProcessEvents(screen,usec);
 }
+
+
+void rfbLogPerror(const char* s ) { puts( s ); }
+
+

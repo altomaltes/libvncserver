@@ -14,7 +14,7 @@
  *                     Johannes E. Schindelin <johannes.schindelin@gmx.de>
  *  Copyright (C) 2002 RealVNC Ltd.
  *  OSXvnc Copyright (C) 2001 Dan McGuirk <mcguirk@incompleteness.net>.
- *  Original Xvnc code Copyright (C) 1999 AT&T Laboratories Cambridge.  
+ *  Original Xvnc code Copyright (C) 1999 AT&T Laboratories Cambridge.
  *  All Rights Reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -186,6 +186,12 @@ typedef struct _rfbScreenInfo
 
     rfbPixel blackPixel;
     rfbPixel whitePixel;
+
+    /**  JACS, async stuff
+      */
+    int (*streamPusher)( int sk, void */*StackFun */, void * userData
+                       , const void * src, size_t sz );
+
 
     /**
      * some screen specific data can be put into a struct where screenData
@@ -369,18 +375,14 @@ typedef struct _wsCtx wsCtx;
 
 
 
-typedef struct _rfbClientRec {
+typedef struct _rfbClientRec
+{ rfbScreenInfoPtr screen;     /** back pointer to the screen */
+
 
 // JACS, async versio
-  int fd; 
+  int fd;
   char * recvPtr; int bytesLeft;   /* JACS, jun 2017, async reads */
 
-  int (*streamPusher)( int fd
-                      , const void * data
-                      , int sz );
-
-    /** back pointer to the screen */
-    rfbScreenInfoPtr screen;
 
      /** points to a scaled version of the screen buffer in cl->scaledScreenList */
      rfbScreenInfoPtr scaledScreen;
@@ -692,6 +694,8 @@ extern rfbClientPtr rfbNewStreamClient( rfbClientPtr     cl
 extern void rfbClientConnectionGone(rfbClientPtr cl);
 extern void rfbProcessClientMessage(rfbClientPtr cl);
 extern  int rfbSinkClientStream( rfbClientPtr, void *, size_t ); // JACS, client data sinker
+extern void * getStreamBytes( rfbClientPtr cl, size_t sz );
+
 
 extern void rfbClientConnFailed(rfbClientPtr cl, const char *reason);
 extern void rfbProcessUDPInput(rfbScreenInfoPtr rfbScreen);
@@ -902,9 +906,10 @@ extern rfbBool rfbProcessSizeArguments(int* width,int* height,int* bpp,int* argc
 /* main.c */
 
 extern void rfbLogEnable(int enabled);
+extern void rfbLogPerror(const char *str);
+
 typedef void (*rfbLogProc)(const char *format, ...);
 extern rfbLogProc rfbLog, rfbErr;
-extern void rfbLogPerror(const char *str);
 
 void rfbScheduleCopyRect(rfbScreenInfoPtr rfbScreen,int x1,int y1,int x2,int y2,int dx,int dy);
 void rfbScheduleCopyRegion(rfbScreenInfoPtr rfbScreen,sraRegionPtr copyRegion,int dx,int dy);
@@ -1004,6 +1009,7 @@ extern rfbBool rfbSendTextChatMessage(rfbClientPtr cl, uint32_t length, char *bu
  */
 rfbBool rfbProcessNewConnection(rfbScreenInfoPtr rfbScreen);
 rfbBool rfbUpdateClient(rfbClientPtr cl);
+rfbBool rfbUpdateClients( rfbScreenInfoPtr screen ); // JACS
 
 
 #if(defined __cplusplus)

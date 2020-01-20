@@ -280,7 +280,7 @@ typedef struct _rfbClient {
 	   allocate this buffer one time to be the full size of the buffer. */
 
 	/* Ultra Encoding uses this buffer too */
-	
+
 	int ultra_buffer_size;
 	char *ultra_buffer;
 
@@ -397,7 +397,7 @@ typedef struct _rfbClient {
 	HandleXvpMsgProc           HandleXvpMsg;
 
 	/* listen.c */
-        int listenSock;
+//        int listenSock;
 
 	FinishedFrameBufferUpdateProc FinishedFrameBufferUpdate;
 

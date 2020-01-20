@@ -1595,7 +1595,7 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
         unsigned char *dst;
         int inRed, inGreen, inBlue, i, j;
 
-        if((tmpbuf = (unsigned char *)malloc(w * h * 3)) == NULL)
+        if((tmpbuf = (unsigned char *)alloca(w * h * 3)) == NULL)
             rfbLog("Memory allocation failure!\n");
         srcptr = (uint16_t *)&cl->scaledScreen->frameBuffer
             [y * cl->scaledScreen->paddedWidthInBytes + x * ps];
@@ -1644,14 +1644,12 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
                    &size, subsamp, quality, flags) == -1) {
         rfbLog("JPEG Error: %s\n", tjGetErrorStr());
         if (tmpbuf) {
-            free(tmpbuf);
             tmpbuf = NULL;
         }
         return 0;
     }
 
     if (tmpbuf) {
-        free(tmpbuf);
         tmpbuf = NULL;
     }
 
@@ -1862,7 +1860,7 @@ static rfbBool SendPngRect(rfbClientPtr cl, int x, int y, int w, int h) {
 #endif
 
     png_write_info(png_ptr, info_ptr);
-    buf = malloc(w * 3);
+    buf = alloca(w * 3);
     for (dy = 0; dy < h; dy++)
     {
 #if 0
@@ -1876,7 +1874,6 @@ static rfbBool SendPngRect(rfbClientPtr cl, int x, int y, int w, int h) {
 #endif
         png_write_row(png_ptr, buf);
     }
-    free(buf);
 
     png_write_end(png_ptr, NULL);
 

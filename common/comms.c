@@ -48,8 +48,8 @@ void rfbLogPerror(const char *str)
 #endif
 }
 
-void rfbCloseClient( rfbClientPtr prm )
-{
+void rfbCloseClient( rfbClientPtr cl )
+{ cl->bytesLeft= 0;                      /* Kill stream */ 
 }
 
 void * getStreamBytes( rfbClientPtr cl, size_t sz )

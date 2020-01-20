@@ -8,9 +8,8 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="vncserver" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
 				<Option object_output="obj/Debug/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
@@ -19,10 +18,18 @@
 					<Add directory="../common" />
 				</Compiler>
 				<Linker>
-					<Add library="E:/MINGW/lib/libws2_32.a" />
-					<Add library="E:/MINGW/lib/libturbojpeg.a" />
-					<Add library="E:/MINGW/lib/libz.a" />
+					<Add library="turbojpeg" />
+					<Add library="z" />
 				</Linker>
+				<ExtraCommands>
+					<Add before="install -d _T($(TARGET_COMPILER_DIR)/include/rfb)" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)rfb.h $(TARGET_COMPILER_DIR)include$(SEP)rfb$(SEP)" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)rfbproto.h $(TARGET_COMPILER_DIR)include$(SEP)rfb$(SEP)" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)win-config.h $(TARGET_COMPILER_DIR)include$(SEP)rfb$(SEP)" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)rfb.h $(TARGET_COMPILER_DIR)include$(SEP)altomaltes$(SEP)rfb$(SEP)" />
+					<Add before="install -d $(TARGET_COMPILER_DIR)include$(SEP)rfb" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="libvncserver" prefix_auto="1" extension_auto="1" />
@@ -34,6 +41,8 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="turbojpeg" />
+					<Add library="z" />
 				</Linker>
 			</Target>
 			<Target title="static">
@@ -49,28 +58,32 @@
 					<Add directory="../common" />
 				</Compiler>
 				<Linker>
-					<Add library="E:/MINGW/lib/libws2_32.a" />
-					<Add library="E:/MINGW/lib/libturbojpeg.a" />
-					<Add library="E:/MINGW/lib/libz.a" />
+					<Add library="turbojpeg" />
+					<Add library="z" />
 				</Linker>
 				<ExtraCommands>
+					<Add before="install -d $(TARGET_COMPILER_DIR)/include/rfb" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)../rfb/win-config.h $(TARGET_COMPILER_DIR)include/rfb/" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)../rfb/rfb.h           $(TARGET_COMPILER_DIR)include/rfb/" />
+					<Add before="$(CMD_CP)  $(PROJECT_DIR)../rfb/rfbproto.h   $(TARGET_COMPILER_DIR)include/rfb/" />
 					<Add after='$(CMD_CP)  $(TARGET_OUTPUT_FILE)  [[if (PLATFORM == PLATFORM_MSW) print(_T(&quot;$(SystemRoot)\\system32&quot;)) else print(_T(&quot;/usr/local/lib&quot;));]]' />
 				</ExtraCommands>
 			</Target>
 			<Target title="shared">
-				<Option output="vncasync" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option platforms="Windows;" />
+				<Option output="$(TARGET_COMPILER_DIR)/lib/vncasync" prefix_auto="0" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-fPIC" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="E:/MINGW/lib/libws2_32.a" />
-					<Add library="E:/MINGW/lib/libturbojpeg.a" />
-					<Add library="E:/MINGW/lib/libz.a" />
+					<Add library="jpeg" />
+					<Add library="z" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='$(CMD_CP)  $(TARGET_OUTPUT_FILE)  [[if (PLATFORM == PLATFORM_MSW) print(_T(&quot;$(SystemRoot)\\system32&quot;)) else print(_T(&quot;/usr/local/lib&quot;));]]' />
@@ -83,14 +96,8 @@
 			<Add directory="../../libvncserver" />
 			<Add directory="../common" />
 			<Add directory="../rfb" />
+			<Add directory=".." />
 		</Compiler>
-		<ExtraCommands>
-			<Add before="install -d $(TARGET_COMPILER_DIR)include$(SEP)rfb" />
-			<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)rfb.h $(TARGET_COMPILER_DIR)include$(SEP)rfb$(SEP)" />
-			<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)rfbproto.h $(TARGET_COMPILER_DIR)include$(SEP)rfb$(SEP)" />
-			<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)win-config.h $(TARGET_COMPILER_DIR)include$(SEP)rfb$(SEP)" />
-			<Add before="$(CMD_CP)  $(PROJECT_DIR)..$(SEP)rfb$(SEP)rfb.h $(TARGET_COMPILER_DIR)include$(SEP)altomaltes$(SEP)rfb$(SEP)" />
-		</ExtraCommands>
 		<Unit filename="../common/base64.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -166,10 +173,6 @@
 		</Unit>
 		<Unit filename="../libvncserver/hextile.c">
 			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../libvncserver/httpd.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../libvncserver/main.c">
 			<Option compilerVar="CC" />

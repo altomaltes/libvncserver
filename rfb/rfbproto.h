@@ -68,7 +68,7 @@ typedef int8_t rfbBool;
 #include <sys/timeb.h>
 #endif
 
-#if defined(WIN32) 
+#if defined(WIN32)
   #include <rfb/win-config.h>
 #else
   #include <rfb/rfbconfig.h>
@@ -598,7 +598,7 @@ typedef struct {
 
 /*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  * KeyboardLedState Encoding.  The X coordinate contains the Locked Modifiers
- * so that a remote troubleshooter can identify that the users 'Caps Lock' 
+ * so that a remote troubleshooter can identify that the users 'Caps Lock'
  * is set...   (It helps a *lot* when the users are untrained)
  */
 #define rfbKeyboardMaskShift        1
@@ -802,7 +802,7 @@ typedef struct {
  *-- The "gradient" filter pre-processes pixel data with a simple algorithm
  * which converts each color component to a difference between a "predicted"
  * intensity and the actual intensity. Such a technique does not affect
- * uncompressed data size, but helps to compress photo-like images better. 
+ * uncompressed data size, but helps to compress photo-like images better.
  * Pseudo-code for converting intensities to differences is the following:
  *
  *   P[i,j] := V[i-1,j] + V[i,j-1] - V[i-1,j-1];
@@ -1054,8 +1054,8 @@ typedef struct _rfbFileTransferMsg {
 #define rfbAFileDelete			7 /*  Response to a delete file command  */
 #define rfbAFileRename			8 /*  Response to a rename file command  */
 #define rfbADirRename			9 /*  Response to a rename dir command  */
-#define rfbADirRecursiveListItem	10 
-#define rfbADirRecursiveSize		11 
+#define rfbADirRecursiveListItem	10
+#define rfbADirRecursiveSize		11
 
 								/*  rfbCommand Command - content params */
 #define rfbCDirCreate			1 /*  Request the server to create the given directory */
@@ -1071,9 +1071,9 @@ typedef struct _rfbFileTransferMsg {
 
 #define sz_rfbBlockSize			8192  /*  Size of a File Transfer packet (before compression) */
 #define rfbZipDirectoryPrefix   "!UVNCDIR-\0" /*  Transferred directory are zipped in a file with this prefix. Must end with "-" */
-#define sz_rfbZipDirectoryPrefix 9 
+#define sz_rfbZipDirectoryPrefix 9
 #define rfbDirPrefix			"[ "
-#define rfbDirSuffix			" ]"		
+#define rfbDirSuffix			" ]"
 
 
 
@@ -1094,9 +1094,9 @@ typedef struct _rfbTextChatMsg {
 #define sz_rfbTextChatMsg 8
 
 #define rfbTextMaxSize		4096
-#define rfbTextChatOpen		0xFFFFFFFF 
-#define rfbTextChatClose	0xFFFFFFFE  
-#define rfbTextChatFinished 0xFFFFFFFD  
+#define rfbTextChatOpen		0xFFFFFFFF
+#define rfbTextChatClose	0xFFFFFFFE
+#define rfbTextChatFinished 0xFFFFFFFD
 
 
 /*-----------------------------------------------------------------------------
@@ -1198,7 +1198,7 @@ typedef struct rfbSetDesktopSizeMsg {
 
 /*-----------------------------------------------------------------------------
  * Modif sf@2002
- * ResizeFrameBuffer - The Client must change the size of its framebuffer  
+ * ResizeFrameBuffer - The Client must change the size of its framebuffer
  */
 
 typedef struct _rfbResizeFrameBufferMsg {
@@ -1246,7 +1246,7 @@ typedef union {
     rfbBellMsg b;
     rfbServerCutTextMsg sct;
 	rfbResizeFrameBufferMsg rsfb;
-	rfbPalmVNCReSizeFrameBufferMsg prsfb; 
+	rfbPalmVNCReSizeFrameBufferMsg prsfb;
 	rfbFileTransferMsg ft;
 	rfbTextChatMsg tc;
 	rfbXvpMsg xvp;
@@ -1256,9 +1256,9 @@ typedef union {
 
 
 /*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * RDV Cache Encoding.  
+ * RDV Cache Encoding.
  * special is not used at this point, can be used to reset cache or other specials
- * just put it to make sure we don't have to change the encoding again.  
+ * just put it to make sure we don't have to change the encoding again.
  */
 
 typedef struct {
@@ -1444,7 +1444,7 @@ typedef struct _rfbSetScaleMsg {
 
 /*-----------------------------------------------------------------------------
  * Copyright (C) 2001 Harakan Software
- * PalmVNC 1.4 & 2.? SetScale Factor message 
+ * PalmVNC 1.4 & 2.? SetScale Factor message
  * SetScaleFactor - tell the RFB server to alter the scale factor for the
  * client buffer.
  */
@@ -1478,7 +1478,7 @@ typedef struct _rfbSetServerInputMsg {
 
 typedef struct _rfbSetSWMsg {
     uint8_t type;			/* always rfbSetSW */
-    uint8_t status;		
+    uint8_t status;
     uint16_t x;
     uint16_t y;
 } rfbSetSWMsg;
@@ -1510,7 +1510,7 @@ typedef union {
 	rfbSetDesktopSizeMsg sdm;
 } rfbClientToServerMsg;
 
-/* 
+/*
  * vncauth.h - describes the functions provided by the vncauth library.
  */
 

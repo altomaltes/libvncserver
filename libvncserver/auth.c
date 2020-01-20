@@ -8,7 +8,7 @@
 /*
  *  Copyright (C) 2005 Rohit Kumar, Johannes E. Schindelin
  *  OSXvnc Copyright (C) 2001 Dan McGuirk <mcguirk@incompleteness.net>.
- *  Original Xvnc code Copyright (C) 1999 AT&T Laboratories Cambridge.  
+ *  Original Xvnc code Copyright (C) 1999 AT&T Laboratories Cambridge.
  *  All Rights Reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -40,8 +40,8 @@ void rfbClientSendString(rfbClientPtr cl, const char *reason);
 static rfbSecurityHandler* securityHandlers = NULL;
 
 /*
- * This method registers a list of new security types.  
- * It avoids same security type getting registered multiple times. 
+ * This method registers a list of new security types.
+ * It avoids same security type getting registered multiple times.
  * The order is not preserved if multiple security types are
  * registered at one-go.
  */
@@ -71,9 +71,9 @@ rfbRegisterSecurityHandler(rfbSecurityHandler* handler)
 }
 
 /*
- * This method unregisters a list of security types. 
+ * This method unregisters a list of security types.
  * These security types won't be available for any new
- * client connection. 
+ * client connection.
  */
 void
 rfbUnregisterSecurityHandler(rfbSecurityHandler* handler)
@@ -109,8 +109,8 @@ rfbUnregisterSecurityHandler(rfbSecurityHandler* handler)
 static void
 rfbVncAuthSendChallenge(rfbClientPtr cl)
 {
-	
-    /* 4 byte header is alreay sent. Which is rfbSecTypeVncAuth 
+
+    /* 4 byte header is alreay sent. Which is rfbSecTypeVncAuth
        (same as rfbVncAuth). Just send the challenge. */
     rfbRandomBytes(cl->authChallenge);
     if (rfbPushClientStream( cl, (char *)cl->authChallenge, CHALLENGESIZE) < 0) {
@@ -118,7 +118,7 @@ rfbVncAuthSendChallenge(rfbClientPtr cl)
         rfbCloseClient(cl);
         return;
     }
-    
+
     /* Dispatch client input to rfbVncAuthProcessResponse. */
     cl->state = RFB_AUTHENTICATION;
 }
@@ -177,8 +177,8 @@ rfbVncAuthNone(rfbClientPtr cl)
 
 
 /*
- * Advertise the supported security types (protocol 3.7). Here before sending 
- * the list of security types to the client one more security type is added 
+ * Advertise the supported security types (protocol 3.7). Here before sending
+ * the list of security types to the client one more security type is added
  * to the list if primaryType is not set to rfbSecTypeInvalid. This security
  * type is the standard vnc security type which does the vnc authentication
  * or it will be security type for no authentication.
@@ -196,7 +196,7 @@ static rfbSecurityHandler VncSecurityHandlerNone = {
     rfbVncAuthNone,
     NULL
 };
-                        
+
 
 static void
 rfbSendSecurityTypeList(rfbClientPtr cl, int primaryType)
@@ -331,7 +331,7 @@ rfbProcessClientSecurityType(rfbClientPtr cl)
 {  rfbSecurityHandler* handler;
 
     unsigned char * chosenType= getStreamBytes( cl, 1 );if ( !chosenType ) return;
-    
+
     /* Make sure it was present in the list sent by the server. */
     for (handler = securityHandlers; handler; handler = handler->next) {
 	if (*chosenType == handler->type) {
@@ -355,7 +355,7 @@ rfbProcessClientSecurityType(rfbClientPtr cl)
 void
 rfbAuthProcessClientMessage(rfbClientPtr cl)
 {
-    int n;
+   // int n;
     uint32_t authResult;
     uint8_t * response= (uint8_t *)getStreamBytes( cl, CHALLENGESIZE ); if ( !response ) return;
 
@@ -365,7 +365,7 @@ rfbAuthProcessClientMessage(rfbClientPtr cl)
         if (rfbPushClientStream( cl,  (char *)&authResult, 4) < 0) {
             rfbLogPerror("rfbAuthProcessClientMessage: write");
         }
-	// support RFB 3.8 clients, they expect a reason *why* it was disconnected 
+	// support RFB 3.8 clients, they expect a reason *why* it was disconnected
         if (cl->protocolMinorVersion > 7) {
             rfbClientSendString(cl, "password check failed!");
 	}
@@ -373,7 +373,7 @@ rfbAuthProcessClientMessage(rfbClientPtr cl)
             rfbCloseClient(cl);
         return;
     }
-        
+
     authResult = Swap32IfLE(rfbVncAuthOK);
 
     if (rfbPushClientStream( cl,  &authResult, 4) < 0) {

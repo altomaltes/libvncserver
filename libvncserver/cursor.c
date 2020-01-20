@@ -309,7 +309,7 @@ char* rfbMakeMaskForXCursor(int width,int height,char* source)
 
 char* rfbMakeMaskFromAlphaSource(int width,int height,unsigned char* alphaSource)
 {
-	int* error=(int*)calloc(sizeof(int),width);
+	int* error=(int*)alloca( sizeof(int) * width ); memset( error, 0, sizeof(int) * width );
 	int i,j,currentError=0,maskStride=(width+7)/8;
 	unsigned char* result=(unsigned char*)calloc(maskStride,height);
 	
@@ -339,7 +339,7 @@ char* rfbMakeMaskFromAlphaSource(int width,int height,unsigned char* alphaSource
 					error[i-2]=left;
 			}
 		}
-	free(error);
+
 	return (char *) result;
 }
 

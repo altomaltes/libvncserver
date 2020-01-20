@@ -2,49 +2,69 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="shared" />
+	<File name="..\rfb\rfbclient.h" open="0" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="21541" topLine="556" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\rfbserver.c" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="105993" topLine="3266" />
+		</Cursor>
+	</File>
+	<File name="..\rfb\rfb.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="38910" topLine="995" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="13324" topLine="511" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\selbox.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8514" topLine="266" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\font.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4831" topLine="172" />
+		</Cursor>
+	</File>
 	<File name="..\libvncserver\scale.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10706" topLine="309" />
+			<Cursor1 position="9383" topLine="268" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\selbox.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\draw.c" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8514" topLine="268" />
+			<Cursor1 position="355" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\common\rfbcrypto.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\zrlepalettehelper.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="49" topLine="0" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\tabletranstemplate.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\zrleoutstream.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3502" topLine="87" />
+			<Cursor1 position="2345" topLine="87" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\translate.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\cursor.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6834" topLine="216" />
+			<Cursor1 position="11156" topLine="343" />
 		</Cursor>
 	</File>
-	<File name="..\common\vncauth.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\zrleencodetemplate.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2831" topLine="103" />
+			<Cursor1 position="3617" topLine="95" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\ultra.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\corre.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2526" topLine="77" />
-		</Cursor>
-	</File>
-	<File name="..\examples\example.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3747" topLine="130" />
-		</Cursor>
-	</File>
-	<File name="..\libvncserver\auth.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11083" topLine="361" />
+			<Cursor1 position="4006" topLine="106" />
 		</Cursor>
 	</File>
 	<File name="..\libvncserver\cargs.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -54,77 +74,102 @@
 	</File>
 	<File name="..\libvncserver\zrle.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1574" topLine="20" />
+			<Cursor1 position="7201" topLine="234" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\corre.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\libvncserver\auth.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4006" topLine="106" />
+			<Cursor1 position="2827" topLine="100" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\zrleencodetemplate.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\examples\example.c" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3617" topLine="95" />
+			<Cursor1 position="9747" topLine="303" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\cursor.c" open="1" top="1" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\common\zywrletemplate.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="953" topLine="18" />
+			<Cursor1 position="963" topLine="362" />
 		</Cursor>
 	</File>
-	<File name="..\rfb\rfbregion.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\common\vncauth.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2831" topLine="103" />
+		</Cursor>
+	</File>
+	<File name="..\common\turbojpeg.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11205" topLine="430" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\ultra.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2526" topLine="77" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\translate.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6834" topLine="216" />
+		</Cursor>
+	</File>
+	<File name="..\common\sha-private.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="388" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\tight.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="62970" topLine="1622" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\tabletranstemplate.c" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3776" topLine="79" />
+		</Cursor>
+	</File>
+	<File name="..\common\rfbcrypto_included.c" open="1" top="1" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="384" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\rfbssl_gnutls.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3690" topLine="92" />
+		</Cursor>
+	</File>
+	<File name="..\common\rfbcrypto.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="47" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\rfb\rfbproto.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2461" topLine="54" />
+		</Cursor>
+	</File>
+	<File name="..\rfb\rfbregion.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="354" topLine="40" />
 		</Cursor>
 	</File>
-	<File name="..\libvncserver\draw.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\common\md5.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="448" topLine="7" />
+			<Cursor1 position="1172" topLine="20" />
+		</Cursor>
+	</File>
+	<File name="..\rfb\win-config.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="477" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\libvncserver\rfbregion.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6124" topLine="319" />
 		</Cursor>
 	</File>
 	<File name="..\common\base64.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="127" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\libvncserver\main.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17050" topLine="672" />
-		</Cursor>
-	</File>
-	<File name="..\rfb\rfb.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="27445" topLine="763" />
-		</Cursor>
-	</File>
-	<File name="..\libvncserver\httpd.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8404" topLine="306" />
-		</Cursor>
-	</File>
-	<File name="..\rfb\rfbclient.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="27776" topLine="686" />
-		</Cursor>
-	</File>
-	<File name="..\libvncserver\rfbserver.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1272" topLine="28" />
-		</Cursor>
-	</File>
-	<File name="..\rfb\win-config.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9780" topLine="342" />
-		</Cursor>
-	</File>
-	<File name="..\rfb\rfbproto.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2405" topLine="54" />
-		</Cursor>
-	</File>
-	<File name="..\common\md5.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1165" topLine="20" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
